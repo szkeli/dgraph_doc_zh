@@ -1,23 +1,23 @@
 # Schema 
 
-对于每个谓词，模式指定目标的类型。如果谓词`p`的类型为`T`，那么对于所有主语-谓词-对象三元组`s p o`，对象`o`的模式类型为`T`。
+对于每个谓词，`Schema`负责指定它的类型。如果谓词`p`的类型为`T`，那么对于所有`subject-predicate-object`三元组`s p o`，对象`o`的`Schema`类型为`T`。
 
-* 在发生突变时，将检查标量类型，如果值不能转换为模式类型，则抛出错误。
-* 在查询时，根据谓词的模式类型返回值结果。
+* `Dgraph`在接收到变更时，如果标量类型不能转化为`Schema`中定义的类型，将会抛出一个错误。
+* `Dgraph`在收到客户端查询时，将根据谓词的在`Schema`中定义的类型返回结果。
 
-如果在突变为谓词添加三元组之前没有指定模式类型，则从第一次突变推断该类型。这种类型是:
+如果`Dgraph`在收到一个变更的时候，它发现变更中对应的谓语的类型没有在`Schema`中定义，它首先会推断该谓语的类型：
 
-* 类型uid，如果谓词的第一个变异具有主语和宾语的节点，或者
-* 如果对象是文字且RDF类型出现在第一个变体中，则从RDF类型派生，或者
-* 默认类型
+* `uid`类型：该`predicate`的首次变更有`subject`和`object`的节点。
+* 从[RDF类型系统](https://dgraph.io/docs/query-language/schema/#rdf-types)推导：如果`object`是一个字面量并且该`predicate`的首次变更提供了`RDF`类型。
+* 否则就是`default`类型。
 
 ## Schema类型
 
-`Dgraph`支持标量类型和`UID`类型。
+`Dgraph`支持`Scalar`类型和`UID`类型。
 
 ### Scalar 标量类型
 
-对于所有具有标量类型谓词的三元组，对象都是文字。
+对于所有的三元组（`triple`），如果其`preidicate`是`scalar`标量类型，那么相应地`object`是字面量类型。
 
 `Dgraph`类型 | `Go`类型
 ----|---
@@ -26,15 +26,15 @@ int|int64
 float|float
 string|string
 bool|bool
-dateTime|time.Time(RFC3399 时间格式\[可选的时区\] 例如： 2006-01-02T15:04:05.999999999+10:00 或者 2006-01-02T15:04:05.999999999)
+dateTime|time.Time（RFC3399 时间格式\[可选的时区\] 例如： 2006-01-02T15:04:05.999999999+10:00 或者 2006-01-02T15:04:05.999999999）
 geo|[go-geom](https://github.com/twpayne/go-geom)
-password|string(被加密的)
+password|string（被加密的）
 
-> 注意，只有当dateTime标量类型兼容RFC 3339时，Dgraph才支持日期和时间格式，这与ISO 8601(在RDF规范中定义)不同。在将值发送到Dgraph之前，应该将其转换为RFC 3339格式。
+> 注意，只有当`dateTime`标量类型（`scalar`）兼容`RFC 3339`时，`Dgraph`才支持日期和时间格式，这与`ISO 8601`（在`RDF`规范中定义）不同。在将值发送到`Dgraph`之前，应该将其转换为`RFC 3339`格式。
 
 ## UID 类型
 
-uid类型表示节点-节点边；在内部，每个节点都表示为一个`uint64 id`。
+`uid`类型标识一条节点到节点的边。在`Dgraph`内部，每一个节点都表示为一个`uint64`的`id`。
 
 `Dgraph` 类型|`Go`类型
 ----|---
@@ -42,11 +42,11 @@ uid|uint64
 
 ## 添加或者修改 Schema
 
-通过指定模式为列表类型，还可以为标准普尔添加多个标量值。下面示例中的`occupation`可以存储每个`S P`的字符串列表。
+通过在`schema`中指定，`object`也可以是一个`list`。下例中的`occupations`支持存储一个`string`类型的`list`。
 
-索引是用`@index`指定的，用参数指定标记器。当为谓词指定索引时，必须指定索引的类型。例如：
+索引是通过`@index`指定的，用参数指定所需的`tokenizer`。当一个`predicate`使用`@index`时，必须指定索引类型：
 
-``` schema
+``` rdf
 name: string @index(exact, fulltext) @count .
 multiname: string @lang .
 age: int @index(int) .
@@ -56,23 +56,24 @@ location: geo @index(geo) .
 occupations: [string] @index(term) .
 ```
 
-如果没有为谓词存储数据，模式突变将设置一个空模式，准备接收三元组。
 
-如果数据在突变之前已经存储，则不会检查现有的值以符合新模式。在查询时，Dgraph尝试将现有值转换为新的模式类型，忽略任何转换失败的值。
+如果没有数据存储为一个指定的`predicate`，当使用`schema`变更时，`Dgraph`将会设置一个空的`schema`来准备接收`triples`。
 
-如果数据存在，并且在模式变化中指定了新索引，则删除未在更新列表中的任何索引，并为每个指定的新标记器创建一个新索引。
+如果数据库中已经有数据存储时变更`schema`，`Dgraph`不会检查现存的数据是否符合`schema`的规则。一旦接收到查询请求，`Dgraph`才会尝试将现存的数据转化为`schema`中的类型，并且忽略错误信息。
 
-如果由模式变异指定，反向边也会被计算。
+如果数据存在，并且在`schema`变更中指定了新索引，则未在更新列表中的任何索引都会被删除，并为每个指定的`tokenizer`创建一个新索引。
 
-> 注意，不能定义以dgraph开头的谓词名称。，它保留为Dgraph的内部类型/谓词的名称空间。例如，将dgraph.name定义为谓词是无效的。
+如果`schema`变更指定，反向边也会被计算。
+
+> 注意，不能定义以`dgraph.`开头的谓词名称，它被保留为`Dgraph`的内部类型或谓词的命名空间。例如，将`dgraph.name`定义为谓词是无效的。
 
 ## 在后台处理索引
 
-根据数据的大小，索引的计算时间可能会很长。从Dgraph版本20.03.0开始，索引可以在后台计算，因此索引可能在Alter操作返回后仍在运行。这要求您在运行需要新创建索引的查询之前等待索引完成。这样的查询将失败，并出现一个错误，通知给定谓词没有索引或没有反向边。
+由于数据的大小，索引的计算时间可能会很长。所以从`Dgraph`版本`20.03.0`开始，索引可以在后台建立，因此索引可能在`Alter`操作返回后仍在服务器运行。这要求您等待`Dgraph`成功建立新的索引，在此之前，相关`predicate`的索引查询会失败。
 
-如果已经在修改一个错误架构，那么alter操作也会失败。请重试。不过，在索引进行时，突变可以成功执行。
+在后台索引完成计算之前，新建索引的操作也会失败，`Dgraph`会提示：`schema is already being modified. Please retry.`。后台建立索引的过程中也可以处理变更。
 
-例如，假设我们用下面的模式执行一个Alter操作：
+例如，假设我们用下面的`schema`执行一个`Alter`操作：
 
 ``` schema 
 name: string @index(fulltext, term) .
@@ -80,7 +81,7 @@ age: int @index(int) @upsert .
 friend: [uid] @count @reverse .
 ```
 
-一旦Alter操作返回，Dgraph将报告以下模式，并启动后台任务来计算所有新的索引：
+一旦`Alter`操作完成，`Dgraph`将返回下面的`schema`，并启动后台任务来计算所有新的索引：
 
 ``` schema
 name: string .
@@ -88,26 +89,47 @@ age: int @upsert .
 friend: [uid] .
 ```
 
-当索引计算完成后，Dgraph将开始报告模式中的索引。在多节点集群中，alpha可能会在不同的时间完成计算索引。在这种情况下，alpha可能会返回不同的模式，直到在所有alpha上完成所有索引的计算。
+当索引计算完成后，`Dgraph`将返回`schema`中的索引。在多节点集群中，`alpha`可能会在不同的时间完成计算索引。在这种情况下，`alpha`可能会返回不同的`schema`，直到在所有`alpha`上完成所有索引的计算。
 
-如果在计算索引时出现意外错误，可能导致后台索引任务失败。您应该重试Alter操作，以便更新架构，或跨所有alpha同步架构。
+如果在计算索引时出现意外错误，可能导致后台索引任务失败。您应该重试`Alter`操作，以便更新架构，或跨所有`alpha`同步架构。
 
-要了解如何检查后台索引状态，请参见[查询运行状况](https://dgraph.io/docs/master/deploy/dgraph-alpha/#querying-health)。
+想要了解如何检查后台索引状态，请参见[查询运行状况](https://dgraph.io/docs/master/deploy/dgraph-alpha/#querying-health)。
 
 ## HTTP API
-*todo*
+
+你能够通过指定`runInBackgroung`为`true`来将索引计算任务放在后台：
+
+``` bash
+curl localhost:8080/alter?runInBackground=true -XPOST -d $'
+    name: string @index(fulltext, term) .
+    age: int @index(int) @upsert .
+    friend: [uid] @count @reverse .
+' | python -m json.tool | less
+```
 
 ## Grpc API
-*todo*
+
+你能够通过指定传递给`Alter`函数的`api.Operation`结构体中的`RunInBackgroun`为`true`来将索引计算任务放在后台：
+
+``` golang
+op := &api.Operation{}
+op.Schema = `
+  name: string @index(fulltext, term) .
+  age: int @index(int) @upsert .
+  friend: [uid] @count @reverse .
+`
+op.RunInBackground = true
+err = dg.Alter(context.Background(), op)
+```
 
 
-## Predicate 规则
+## Predicate 命名规则
 
 `Predicate`允许任何字母数字组合。`Dgraph`还支持国际化资源标识符[IRIs](https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier)。您可以在谓词[i18n](https://dgraph.io/docs/query-language/schema/#predicates-i18n)中了解更多信息。
 
 ### 允许特殊字符
 
-不接受单个特殊字符，包括来自IRIs的特殊字符。它们必须以字母数字字符作为前缀/后缀：
+不接受单个特殊字符，包括来自`IRIs`的特殊字符。它们必须以字母数字字符作为前缀/后缀：
 
 ``` schema
 ][&*()_-+=!#$%
@@ -123,11 +145,11 @@ friend: [uid] .
 
 ## Predicate 国际化
 
-如果`predicate`是`URI`或具有特定于语言的字符，则在执行模式更改时用尖括号<>将其括起来。
+如果`predicate`是`URI`或具有特定于语言的字符，则在执行`schema`变更时用尖括号`<>`将其括起来。
 
 > 注意，`Dgraph`支持谓词名称和值的国际化资源标识符(`IRIs`)。
 
-Schema 解析：
+Schema 语法：
 
 ``` schema 
 <职业>: string @index(exact) .
@@ -136,7 +158,7 @@ Schema 解析：
 <公司>: string .
 ```
 
-该语法允许国际化谓词名称，但全文索引默认仍为英语。要为您的语言使用正确的标记器，您需要使用`@lang`指令并使用语言标记输入值。
+该语法允许国际化`predicate`命名，但全文索引默认仍为英语。要为您的语言使用正确的`tokenizer`，您需要使用`@lang`指令并使用语言标记输入值。
 
 Schema:
 
@@ -169,9 +191,9 @@ Schema:
 
 ## 插入指令 Upsert directive
 
-要在`predicate`上使用`upsert`操作，请在模式中指定`@upsert`指令。当使用`@upsert`指令提交涉及`predicate`的事务时，`Dgraph`会检查索引键是否存在冲突，这有助于在运行并发`upsert`时执行唯一性约束。
+要在`predicate`上使用`upsert`操作，请在`schema`中指定`@upsert`指令。当使用`@upsert`指令提交涉及`predicate`的事务时，`Dgraph`会检查索引键是否存在冲突，这有助于在运行并发`upsert`时执行唯一性约束。
 
-这就是为`predicate`指定`upsert`指令的方法。
+下面就是为`predicate`指定`upsert`指令的方法：
 
 ``` schema 
 email: string @index(exact) @upsert .
@@ -179,7 +201,7 @@ email: string @index(exact) @upsert .
 
 ## Noconflict directive
 
-`NoConflict`指令防止在`predicate`级别进行冲突检测。这是一个实验性的特性，不是一个推荐的指令，但它的存在是为了帮助避免不具有高正确性要求的谓词的冲突。这可能会导致数据丢失，特别是当使用带有`count`索引的谓词时。
+`NoConflict`指令防止在`predicate`级别进行冲突检测。这是一个实验性的功能，不是推荐使用的指令，但它的存在是为了帮助避免不具有高正确性要求的谓词的冲突。这可能会导致数据丢失，特别是当使用带有`count`索引的谓词时。
 
 这就是为谓词指定`@noconflict`指令的方式：
 
@@ -189,22 +211,36 @@ email: string @index(exact) @noconflict .
 
 ## RDF 类型
 
-`Dgraph`在变更中支持许多`RDF`类型。
+`Dgraph`在变更中支持一系列的`RDF`类型。
 
-除了在第一次更改时暗示模式类型外，`RDF`类型还可以覆盖用于存储的模式类型。
+除了在首次变更时隐式指定`schema`类型外，`RDF`类型还可以覆盖用于存储的`schema`类型。
 
-如果`predicate`具有模式类型，而变体具有具有不同基础`Dgraph`类型的`RDF`类型，则会检查模式类型的可转换性，如果它们不兼容，则会抛出错误，但值存储在`RDF`类型对应的`Dgraph`类型中。查询结果总是以模式类型返回。
+如果一个`predicate`具有一个用户指定的`schema`类型并且相应的变更中的`RDF`类型对应多个`Dgraph`类型，`Dgraph`就会检查它们的可转换性，如果它们不兼容，则会抛出错误。查询结果总是以`schema`类型返回。
 
-例如，如果没有为年龄谓词设置模式。给出如下变更：
+例如，如果`schema`中没有为`age`设置类型，对于如下变更：
+
+``` dql
+{
+ set {
+  _:a <age> "15"^^<xs:int> .
+  _:b <age> "13" .
+  _:c <age> "14"^^<xs:string> .
+  _:d <age> "14.5"^^<xs:string> .
+  _:e <age> "14.5" .
+ }
+}
+```
 
 `Dgraph`:
 
-* 将模式类型设置为`int`，正如前一个三元组所暗示的那样。
+* 将`schema`类型设置为`int`，由第一个三元组推导而来。
 * 将`13`在存储上转换为`int`。
-* 检查`14`可以转换为`int`，但存储为字符串。
+* 检查`14`可以转换为`int`，但存储为`string`类型。
 * 为其余两个三元组抛出错误，因为`14.5`不能转换为`int`。
 
 ## 扩展类型 Extended Types
+
+`Dgraph`也支持下面这些类型。
 
 ### Password 类型
 
