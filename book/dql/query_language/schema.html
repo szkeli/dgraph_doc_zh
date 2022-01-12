@@ -1,0 +1,549 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Schema - Dgraph中文文档</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../overview.html"><strong aria-hidden="true">1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../graphql/overview.html"><strong aria-hidden="true">2.</strong> GraphQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dgraphql/overview.html"><strong aria-hidden="true">2.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../dgraphql/quick_start.html"><strong aria-hidden="true">2.2.</strong> 快速开始</a></li><li class="chapter-item expanded "><a href="../../graphql/how_graphql_works_in_dgraph.html"><strong aria-hidden="true">2.3.</strong> GraphQl 是如何运行在 Dgraph 中的</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/overview.html"><strong aria-hidden="true">2.4.</strong> TODO List示例应用的开发</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/overview.html"><strong aria-hidden="true">2.4.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/schema_design.html"><strong aria-hidden="true">2.4.2.</strong> Schema 设计</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/creating_a_basic_ui.html"><strong aria-hidden="true">2.4.3.</strong> 创建基本的UI界面</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/authorization_rules.html"><strong aria-hidden="true">2.4.4.</strong> 添加认证</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/using_auth0.html"><strong aria-hidden="true">2.4.5.</strong> 使用 Auth0 颁发 Token</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/using_firebase_authentication.html"><strong aria-hidden="true">2.4.6.</strong> 使用 Firebase 认证</a></li><li class="chapter-item expanded "><a href="../../graphql/deploying_on_dgraph_cloud.html"><strong aria-hidden="true">2.4.7.</strong> 部署到 Dgraph 云</a></li></ol></li><li class="chapter-item expanded "><a href="../../graphql/authorization/overview.html"><strong aria-hidden="true">2.5.</strong> 认证</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../graphql/auth_directive.html"><strong aria-hidden="true">2.5.1.</strong> @auth 动词</a></li><li class="chapter-item expanded "><a href="../../graphql/mutations.html"><strong aria-hidden="true">2.5.2.</strong> 在变更中使用 @auth 动词</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/overview.html"><strong aria-hidden="true">2.6.</strong> API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/overview.html"><strong aria-hidden="true">2.6.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../api/requests_and_responses.html"><strong aria-hidden="true">2.6.2.</strong> 请求和请求响应</a></li><li class="chapter-item expanded "><a href="../../api/graphql_variables.html"><strong aria-hidden="true">2.6.3.</strong> GraphQL 变量</a></li><li class="chapter-item expanded "><a href="../../api/graphql_fragment.html"><strong aria-hidden="true">2.6.4.</strong> GraphQL 片段</a></li><li class="chapter-item expanded "><a href="../../api/multiple_graphql_operations_in_a_request.html"><strong aria-hidden="true">2.6.5.</strong> 一次请求多次操作</a></li><li class="chapter-item expanded "><a href="../../api/graphql_errors.html"><strong aria-hidden="true">2.6.6.</strong> GraphQL 错误</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../dql/overview.html"><strong aria-hidden="true">3.</strong> DQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/get_started.html"><strong aria-hidden="true">3.1.</strong> 开始</a></li><li class="chapter-item expanded "><a href="../../dql/tutorials.html"><strong aria-hidden="true">3.2.</strong> 手册</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/dql_fundamentals.html"><strong aria-hidden="true">3.3.</strong> 查询</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/query_language/dql_fundamentals.html"><strong aria-hidden="true">3.3.1.</strong> DQL基础</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/functions.html"><strong aria-hidden="true">3.3.2.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/connecting_filters.html"><strong aria-hidden="true">3.3.3.</strong> 联合过滤</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/aliases.html"><strong aria-hidden="true">3.3.4.</strong> 别名</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/paging.html"><strong aria-hidden="true">3.3.5.</strong> 分页</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/count.html"><strong aria-hidden="true">3.3.6.</strong> 计算总数</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/shorting.html"><strong aria-hidden="true">3.3.7.</strong> 排序</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/multiple_query_blocks.html"><strong aria-hidden="true">3.3.8.</strong> 多查找块</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/query_variables.html"><strong aria-hidden="true">3.3.9.</strong> 查询变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/value_variables.html"><strong aria-hidden="true">3.3.10.</strong> 值变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/aggregation.html"><strong aria-hidden="true">3.3.11.</strong> 聚合</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/math_on_value_variables.html"><strong aria-hidden="true">3.3.12.</strong> 值变量上的数学处理</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/groupby.html"><strong aria-hidden="true">3.3.13.</strong> 分组</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/expand_predicates.html"><strong aria-hidden="true">3.3.14.</strong> 展开操作</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/cascade_directive.html"><strong aria-hidden="true">3.3.15.</strong> 省去操作</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/normalize.html"><strong aria-hidden="true">3.3.16.</strong> @normalize 正则化</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/ignorereflex.html"><strong aria-hidden="true">3.3.17.</strong> @ignorereflex</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/debug.html"><strong aria-hidden="true">3.3.18.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/schema.html" class="active"><strong aria-hidden="true">3.3.19.</strong> Schema</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/type_system.html"><strong aria-hidden="true">3.3.20.</strong> 类型系统</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/facets_and_edge_attributes.html"><strong aria-hidden="true">3.3.21.</strong> 边属性</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/shortest_path_query.html"><strong aria-hidden="true">3.3.22.</strong> 最短路径查询</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/recurse_query.html"><strong aria-hidden="true">3.3.23.</strong> 递归查询</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/fragment.html"><strong aria-hidden="true">3.3.24.</strong> 片段</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/graphql_variables.html"><strong aria-hidden="true">3.3.25.</strong> GraphQL变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/indexing_with_custom_tokenizers.html"><strong aria-hidden="true">3.3.26.</strong> 自定义Tokenizers来创建索引</a></li></ol></li><li class="chapter-item expanded "><a href="../../dql/mutations/triples.html"><strong aria-hidden="true">3.4.</strong> 变更</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/mutations/triples.html"><strong aria-hidden="true">3.4.1.</strong> 三元组</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/blank_nodes_and_uid.html"><strong aria-hidden="true">3.4.2.</strong> 空白node和UID</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/externals_ids.html"><strong aria-hidden="true">3.4.3.</strong> 外部ID</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/externals_ids_and_upsert_block.html"><strong aria-hidden="true">3.4.4.</strong> 外部ID和插入块</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/language_and_rdf_types.html"><strong aria-hidden="true">3.4.5.</strong> 语言和RDF类型</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/batch_mutations.html"><strong aria-hidden="true">3.4.6.</strong> 批量变更</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/delete.html"><strong aria-hidden="true">3.4.7.</strong> 删除</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/facet_list_in_rdf.html"><strong aria-hidden="true">3.4.8.</strong> RDF中的边属性</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/mutations_using_curl.html"><strong aria-hidden="true">3.4.9.</strong> 使用cURL变更</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/json_mutation_format.html"><strong aria-hidden="true">3.4.10.</strong> JSON 变更格式</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/upsert_block.html"><strong aria-hidden="true">3.4.11.</strong> 插入块</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/conditional_upsert.html"><strong aria-hidden="true">3.4.12.</strong> 条件插入</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/reverse_edge.html"><strong aria-hidden="true">3.4.13.</strong> 反向边</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../client/overview.html"><strong aria-hidden="true">4.</strong> 客户端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../client/overview.html"><strong aria-hidden="true">4.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../client/go.html"><strong aria-hidden="true">4.2.</strong> GO</a></li><li class="chapter-item expanded "><a href="../../client/c#.html"><strong aria-hidden="true">4.3.</strong> C#</a></li><li class="chapter-item expanded "><a href="../../client/java.html"><strong aria-hidden="true">4.4.</strong> Java</a></li><li class="chapter-item expanded "><a href="../../client/javascript/grpc_client.html"><strong aria-hidden="true">4.5.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../client/javascript/grpc_client.html"><strong aria-hidden="true">4.5.1.</strong> gRpc 客户端</a></li><li class="chapter-item expanded "><a href="../../client/javascript/http_client.html"><strong aria-hidden="true">4.5.2.</strong> HTTP 客户端</a></li></ol></li><li class="chapter-item expanded "><a href="../../client/python.html"><strong aria-hidden="true">4.6.</strong> Python</a></li><li class="chapter-item expanded "><a href="../../client/unofficial_dgraph_clients.html"><strong aria-hidden="true">4.7.</strong> 非官方客户端</a></li><li class="chapter-item expanded "><a href="../../client/raw_http.html"><strong aria-hidden="true">4.8.</strong> 原生HTTP</a></li></ol></li><li class="chapter-item expanded "><a href="../../ratel_ui/overview.html"><strong aria-hidden="true">5.</strong> Ratel 界面</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../ratel_ui/overview.html"><strong aria-hidden="true">5.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/connection.html"><strong aria-hidden="true">5.2.</strong> 连接</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/console.html"><strong aria-hidden="true">5.3.</strong> 控制台</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/schema.html"><strong aria-hidden="true">5.4.</strong> Schema</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/cluster.html"><strong aria-hidden="true">5.5.</strong> 集群</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/backups.html"><strong aria-hidden="true">5.6.</strong> 备份</a></li></ol></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/overview.html"><strong aria-hidden="true">6.</strong> 部署和管理</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../deploy_and_manage/overview.html"><strong aria-hidden="true">6.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/download.html"><strong aria-hidden="true">6.2.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/config.html"><strong aria-hidden="true">6.3.</strong> 配置</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/more_about_dgraph_zero.html"><strong aria-hidden="true">6.4.</strong> 关于 Dgraph Zero 的更多信息</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/more_about_dgraph_alpha.html"><strong aria-hidden="true">6.5.</strong> 关于 Dgraph Alpha 的更多信息</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/single_host_setup.html"><strong aria-hidden="true">6.6.</strong> 单机部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/multi_host_setup.html"><strong aria-hidden="true">6.7.</strong> 多机部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/using_k8s.html"><strong aria-hidden="true">6.8.</strong> 使用 K8S</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/cluster_setup.html"><strong aria-hidden="true">6.9.</strong> 集群部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/cluster_checklist.html"><strong aria-hidden="true">6.10.</strong> 集群部署注意事项</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/production_checklist.html"><strong aria-hidden="true">6.11.</strong> 生产环境注意事项</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/data_decryption.html"><strong aria-hidden="true">6.12.</strong> 数据加密</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/dgraph_cli_reference.html"><strong aria-hidden="true">6.13.</strong> Dgraph 命令行接口使用手册</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/troubleshooting.html"><strong aria-hidden="true">6.14.</strong> 问题解决</a></li></ol></li><li class="chapter-item expanded "><a href="../../enterprise_features/access_control_lists.html"><strong aria-hidden="true">7.</strong> 付费版特性</a></li><li class="chapter-item expanded "><a href="../../migration/loading_csv_data.html"><strong aria-hidden="true">8.</strong> 数据迁移</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../migration/loading_csv_data.html"><strong aria-hidden="true">8.1.</strong> 加载CSV数据</a></li></ol></li><li class="chapter-item expanded "><a href="../../FAQ.html"><strong aria-hidden="true">9.</strong> 常见问题和解决方案</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/retrieving_debug_information.html"><strong aria-hidden="true">10.</strong> 最佳实践</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../how_to_guides/retrieving_debug_information.html"><strong aria-hidden="true">10.1.</strong> 检索调试信息</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/shell_completion.html"><strong aria-hidden="true">10.2.</strong> 命令行补全</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_debug_tool.html"><strong aria-hidden="true">10.3.</strong> 使用调试工具</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_dgraph_sentry_integration.html"><strong aria-hidden="true">10.4.</strong> 使用 Dgraph Sentry 集成</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_increment_tool.html"><strong aria-hidden="true">10.5.</strong> 使用增量工具</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/giving_nodes_a_type.html"><strong aria-hidden="true">10.6.</strong> 设置一个node的类型</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/load_balancing_queries_with_nginx.html"><strong aria-hidden="true">10.7.</strong> 使用 nginx 做查询负载均衡</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/a_simple_login_system.html"><strong aria-hidden="true">10.8.</strong> 一个简单的登录系统</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/upserts.html"><strong aria-hidden="true">10.9.</strong> 插入</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/run_jepsen_tests.html"><strong aria-hidden="true">10.10.</strong> 运行 Jepsen 测试</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/concurrent_mutations_and_conflicts.html"><strong aria-hidden="true">10.11.</strong> 并行变更和冲突</a></li></ol></li><li class="chapter-item expanded "><a href="../../design_concepts/concepts.html"><strong aria-hidden="true">11.</strong> 设计原则</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../design_concepts/concepts.html"><strong aria-hidden="true">11.1.</strong> 原则</a></li></ol></li><li class="chapter-item expanded "><a href="../../releases.html"><strong aria-hidden="true">12.</strong> 版本更新</a></li><li class="chapter-item expanded "><a href="../../tutorials.html"><strong aria-hidden="true">13.</strong> 手册总览</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Dgraph中文文档</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="schema"><a class="header" href="#schema">Schema</a></h1>
+<p>对于每个谓词，模式指定目标的类型。如果谓词<code>p</code>的类型为<code>T</code>，那么对于所有主语-谓词-对象三元组<code>s p o</code>，对象<code>o</code>的模式类型为<code>T</code>。</p>
+<ul>
+<li>在发生突变时，将检查标量类型，如果值不能转换为模式类型，则抛出错误。</li>
+<li>在查询时，根据谓词的模式类型返回值结果。</li>
+</ul>
+<p>如果在突变为谓词添加三元组之前没有指定模式类型，则从第一次突变推断该类型。这种类型是:</p>
+<ul>
+<li>类型uid，如果谓词的第一个变异具有主语和宾语的节点，或者</li>
+<li>如果对象是文字且RDF类型出现在第一个变体中，则从RDF类型派生，或者</li>
+<li>默认类型</li>
+</ul>
+<h2 id="schema类型"><a class="header" href="#schema类型">Schema类型</a></h2>
+<p><code>Dgraph</code>支持标量类型和<code>UID</code>类型。</p>
+<h3 id="scalar-标量类型"><a class="header" href="#scalar-标量类型">Scalar 标量类型</a></h3>
+<p>对于所有具有标量类型谓词的三元组，对象都是文字。</p>
+<table><thead><tr><th><code>Dgraph</code>类型</th><th><code>Go</code>类型</th></tr></thead><tbody>
+<tr><td>default</td><td>string</td></tr>
+<tr><td>int</td><td>int64</td></tr>
+<tr><td>float</td><td>float</td></tr>
+<tr><td>string</td><td>string</td></tr>
+<tr><td>bool</td><td>bool</td></tr>
+<tr><td>dateTime</td><td>time.Time(RFC3399 时间格式[可选的时区] 例如： 2006-01-02T15:04:05.999999999+10:00 或者 2006-01-02T15:04:05.999999999)</td></tr>
+<tr><td>geo</td><td><a href="https://github.com/twpayne/go-geom">go-geom</a></td></tr>
+<tr><td>password</td><td>string(被加密的)</td></tr>
+</tbody></table>
+<blockquote>
+<p>注意，只有当dateTime标量类型兼容RFC 3339时，Dgraph才支持日期和时间格式，这与ISO 8601(在RDF规范中定义)不同。在将值发送到Dgraph之前，应该将其转换为RFC 3339格式。</p>
+</blockquote>
+<h2 id="uid-类型"><a class="header" href="#uid-类型">UID 类型</a></h2>
+<p>uid类型表示节点-节点边；在内部，每个节点都表示为一个<code>uint64 id</code>。</p>
+<table><thead><tr><th><code>Dgraph</code> 类型</th><th><code>Go</code>类型</th></tr></thead><tbody>
+<tr><td>uid</td><td>uint64</td></tr>
+</tbody></table>
+<h2 id="添加或者修改-schema"><a class="header" href="#添加或者修改-schema">添加或者修改 Schema</a></h2>
+<p>通过指定模式为列表类型，还可以为标准普尔添加多个标量值。下面示例中的<code>occupation</code>可以存储每个<code>S P</code>的字符串列表。</p>
+<p>索引是用<code>@index</code>指定的，用参数指定标记器。当为谓词指定索引时，必须指定索引的类型。例如：</p>
+<pre><code class="language-schema">name: string @index(exact, fulltext) @count .
+multiname: string @lang .
+age: int @index(int) .
+friend: [uid] @count .
+dob: dateTime .
+location: geo @index(geo) .
+occupations: [string] @index(term) .
+</code></pre>
+<p>如果没有为谓词存储数据，模式突变将设置一个空模式，准备接收三元组。</p>
+<p>如果数据在突变之前已经存储，则不会检查现有的值以符合新模式。在查询时，Dgraph尝试将现有值转换为新的模式类型，忽略任何转换失败的值。</p>
+<p>如果数据存在，并且在模式变化中指定了新索引，则删除未在更新列表中的任何索引，并为每个指定的新标记器创建一个新索引。</p>
+<p>如果由模式变异指定，反向边也会被计算。</p>
+<blockquote>
+<p>注意，不能定义以dgraph开头的谓词名称。，它保留为Dgraph的内部类型/谓词的名称空间。例如，将dgraph.name定义为谓词是无效的。</p>
+</blockquote>
+<h2 id="在后台处理索引"><a class="header" href="#在后台处理索引">在后台处理索引</a></h2>
+<p>根据数据的大小，索引的计算时间可能会很长。从Dgraph版本20.03.0开始，索引可以在后台计算，因此索引可能在Alter操作返回后仍在运行。这要求您在运行需要新创建索引的查询之前等待索引完成。这样的查询将失败，并出现一个错误，通知给定谓词没有索引或没有反向边。</p>
+<p>如果已经在修改一个错误架构，那么alter操作也会失败。请重试。不过，在索引进行时，突变可以成功执行。</p>
+<p>例如，假设我们用下面的模式执行一个Alter操作：</p>
+<pre><code class="language-schema">name: string @index(fulltext, term) .
+age: int @index(int) @upsert .
+friend: [uid] @count @reverse .
+</code></pre>
+<p>一旦Alter操作返回，Dgraph将报告以下模式，并启动后台任务来计算所有新的索引：</p>
+<pre><code class="language-schema">name: string .
+age: int @upsert .
+friend: [uid] .
+</code></pre>
+<p>当索引计算完成后，Dgraph将开始报告模式中的索引。在多节点集群中，alpha可能会在不同的时间完成计算索引。在这种情况下，alpha可能会返回不同的模式，直到在所有alpha上完成所有索引的计算。</p>
+<p>如果在计算索引时出现意外错误，可能导致后台索引任务失败。您应该重试Alter操作，以便更新架构，或跨所有alpha同步架构。</p>
+<p>要了解如何检查后台索引状态，请参见<a href="https://dgraph.io/docs/master/deploy/dgraph-alpha/#querying-health">查询运行状况</a>。</p>
+<h2 id="http-api"><a class="header" href="#http-api">HTTP API</a></h2>
+<p><em>todo</em></p>
+<h2 id="grpc-api"><a class="header" href="#grpc-api">Grpc API</a></h2>
+<p><em>todo</em></p>
+<h2 id="predicate-规则"><a class="header" href="#predicate-规则">Predicate 规则</a></h2>
+<p><code>Predicate</code>允许任何字母数字组合。<code>Dgraph</code>还支持国际化资源标识符<a href="https://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRIs</a>。您可以在谓词<a href="https://dgraph.io/docs/query-language/schema/#predicates-i18n">i18n</a>中了解更多信息。</p>
+<h3 id="允许特殊字符"><a class="header" href="#允许特殊字符">允许特殊字符</a></h3>
+<p>不接受单个特殊字符，包括来自IRIs的特殊字符。它们必须以字母数字字符作为前缀/后缀：</p>
+<pre><code class="language-schema">][&amp;*()_-+=!#$%
+</code></pre>
+<blockquote>
+<p>注意：我们不会限制您使用@后缀，但是后缀字符将被忽略。</p>
+</blockquote>
+<h3 id="被禁止的特殊字符串"><a class="header" href="#被禁止的特殊字符串">被禁止的特殊字符串</a></h3>
+<pre><code class="language-schema">^}|{`\~
+</code></pre>
+<h2 id="predicate-国际化"><a class="header" href="#predicate-国际化">Predicate 国际化</a></h2>
+<p>如果<code>predicate</code>是<code>URI</code>或具有特定于语言的字符，则在执行模式更改时用尖括号&lt;&gt;将其括起来。</p>
+<blockquote>
+<p>注意，<code>Dgraph</code>支持谓词名称和值的国际化资源标识符(<code>IRIs</code>)。</p>
+</blockquote>
+<p>Schema 解析：</p>
+<pre><code class="language-schema">&lt;职业&gt;: string @index(exact) .
+&lt;年龄&gt;: int @index(int) .
+&lt;地点&gt;: geo @index(geo) .
+&lt;公司&gt;: string .
+</code></pre>
+<p>该语法允许国际化谓词名称，但全文索引默认仍为英语。要为您的语言使用正确的标记器，您需要使用<code>@lang</code>指令并使用语言标记输入值。</p>
+<p>Schema:</p>
+<pre><code class="language-schema">&lt;公司&gt;: string @index(fulltext) @lang .
+</code></pre>
+<p>变更数据：</p>
+<pre><code class="language-schema">{
+  set {
+    _:a &lt;公司&gt; &quot;Dgraph Labs Inc&quot;@en .
+    _:b &lt;公司&gt; &quot;夏新科技有限责任公司&quot;@zh .
+    _:a &lt;dgraph.type&gt; &quot;Company&quot; .
+  }
+}
+</code></pre>
+<p>查询数据：</p>
+<pre><code class="language-graphql">{
+  q(func: alloftext(&lt;公司&gt;@zh, &quot;夏新科技有限责任公司&quot;)) {
+    uid
+    &lt;公司&gt;@.
+  }
+}
+</code></pre>
+<h2 id="插入指令-upsert-directive"><a class="header" href="#插入指令-upsert-directive">插入指令 Upsert directive</a></h2>
+<p>要在<code>predicate</code>上使用<code>upsert</code>操作，请在模式中指定<code>@upsert</code>指令。当使用<code>@upsert</code>指令提交涉及<code>predicate</code>的事务时，<code>Dgraph</code>会检查索引键是否存在冲突，这有助于在运行并发<code>upsert</code>时执行唯一性约束。</p>
+<p>这就是为<code>predicate</code>指定<code>upsert</code>指令的方法。</p>
+<pre><code class="language-schema">email: string @index(exact) @upsert .
+</code></pre>
+<h2 id="noconflict-directive"><a class="header" href="#noconflict-directive">Noconflict directive</a></h2>
+<p><code>NoConflict</code>指令防止在<code>predicate</code>级别进行冲突检测。这是一个实验性的特性，不是一个推荐的指令，但它的存在是为了帮助避免不具有高正确性要求的谓词的冲突。这可能会导致数据丢失，特别是当使用带有<code>count</code>索引的谓词时。</p>
+<p>这就是为谓词指定<code>@noconflict</code>指令的方式：</p>
+<pre><code class="language-schema">email: string @index(exact) @noconflict .
+</code></pre>
+<h2 id="rdf-类型"><a class="header" href="#rdf-类型">RDF 类型</a></h2>
+<p><code>Dgraph</code>在变更中支持许多<code>RDF</code>类型。</p>
+<p>除了在第一次更改时暗示模式类型外，<code>RDF</code>类型还可以覆盖用于存储的模式类型。</p>
+<p>如果<code>predicate</code>具有模式类型，而变体具有具有不同基础<code>Dgraph</code>类型的<code>RDF</code>类型，则会检查模式类型的可转换性，如果它们不兼容，则会抛出错误，但值存储在<code>RDF</code>类型对应的<code>Dgraph</code>类型中。查询结果总是以模式类型返回。</p>
+<p>例如，如果没有为年龄谓词设置模式。给出如下变更：</p>
+<p><code>Dgraph</code>:</p>
+<ul>
+<li>将模式类型设置为<code>int</code>，正如前一个三元组所暗示的那样。</li>
+<li>将<code>13</code>在存储上转换为<code>int</code>。</li>
+<li>检查<code>14</code>可以转换为<code>int</code>，但存储为字符串。</li>
+<li>为其余两个三元组抛出错误，因为<code>14.5</code>不能转换为<code>int</code>。</li>
+</ul>
+<h2 id="扩展类型-extended-types"><a class="header" href="#扩展类型-extended-types">扩展类型 Extended Types</a></h2>
+<h3 id="password-类型"><a class="header" href="#password-类型">Password 类型</a></h3>
+<p>通过将属性的模式设置为<code>password</code>类型来设置实体的密码。不能直接查询密码，只能通过<code>checkpwd</code>函数进行匹配检查。密码使用<code>bcrypt</code>加密。</p>
+<p>例如：设置密码，首先设置<code>schema</code>，然后设置密码：</p>
+<pre><code class="language-schema">pass: password .
+</code></pre>
+<p>使用变更设置密码：</p>
+<pre><code class="language-graphql">{
+  set {
+    &lt;0x123&gt; &lt;name&gt; &quot;Password Example&quot; .
+    &lt;0x123&gt; &lt;pass&gt; &quot;ThePassword&quot; .
+  }
+}
+</code></pre>
+<p>测试密码是否正确：</p>
+<pre><code class="language-graphql">{
+  check(func: uid(0x123)) {
+    name
+    checkpwd(pass, &quot;ThePassword&quot;)
+  }
+}
+</code></pre>
+<p>返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;check&quot;: [
+      {
+        &quot;name&quot;: &quot;Password Example&quot;,
+        &quot;checkpwd(pass)&quot;: true
+      }
+    ]
+  }
+}
+</code></pre>
+<p>在<code>checkpwd</code>函数上使用别名：</p>
+<pre><code class="language-graphql">{
+  check(func: uid(0x123)) {
+    name
+    secret: checkpwd(pass, &quot;ThePassword&quot;)
+  }
+}
+</code></pre>
+<p>返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;check&quot;: [
+      {
+        &quot;name&quot;: &quot;Password Example&quot;,
+        &quot;secret&quot;: true
+      }
+    ]
+  }
+}
+</code></pre>
+<h3 id="indexing-索引"><a class="header" href="#indexing-索引">Indexing 索引</a></h3>
+<blockquote>
+<p>在一个 predicate 上使用函数需要指定索引</p>
+</blockquote>
+<p>当通过应用函数进行筛选时，<code>Dgraph</code>使用索引来高效地搜索可能较大的数据集。</p>
+<p>所有标量类型都可以被索引。</p>
+<p>类型<code>int</code>, <code>float</code>, <code>bool</code>和<code>geo</code>都只有一个默认索引：带有命名为<code>int</code>, <code>float</code>, <code>bool</code>和<code>geo</code>的标记器。</p>
+<p>类型<code>string</code>和<code>dateTime</code>有许多索引。</p>
+<h4 id="string-indices"><a class="header" href="#string-indices">String Indices</a></h4>
+<p><code>String</code>类型的值可用下表的索引进行检索：</p>
+<table><thead><tr><th><code>Dgraph</code>函数</th><th>需要的索引或<code>tokenizer</code></th><th>标注</th></tr></thead><tbody>
+<tr><td><code>eq</code></td><td><code>hash</code> <code>exact</code> <code>term</code> <code>fulltext</code></td><td>eq的最佳性能指标是哈希值。只有在您还需要术语或全文搜索时才使用<code>term</code>或<code>fulltext</code>。如果您已经在使用<code>term</code>，那么也不需要使用<code>hash</code>或<code>exact</code>。</td></tr>
+<tr><td><code>le</code> <code>ge</code> <code>lt</code> <code>gt</code></td><td><code>exact</code></td><td>允许更快地查询</td></tr>
+<tr><td><code>allofterms</code> <code>amyofterms</code></td><td><code>term</code></td><td>允许在一个句子中使用短语查询</td></tr>
+<tr><td><code>alloftext</code> <code>anyoftext</code></td><td><code>fulltext</code></td><td>匹配特定语言的词干和停止词。</td></tr>
+<tr><td><code>regexp</code></td><td><code>trigram</code></td><td>正则表达式匹配。也可用于相等检查。</td></tr>
+</tbody></table>
+<blockquote>
+<p>错误的索引选择可能会导致性能损失和增加事务冲突率。只使用应用程序需要的最小数量和最简单的索引。</p>
+</blockquote>
+<h4 id="datetime-indices"><a class="header" href="#datetime-indices">DateTime Indices</a></h4>
+<p><code>DateTime</code>类型的值可用下表地索引进行检索：</p>
+<table><thead><tr><th>索引名字 <code>tokenizer</code></th><th>索引到的日期的部分</th></tr></thead><tbody>
+<tr><td><code>year</code></td><td>索引到年份(默认)</td></tr>
+<tr><td><code>month</code></td><td>索引年份和月份</td></tr>
+<tr><td><code>day</code></td><td>索引年份、月份、天</td></tr>
+<tr><td><code>hour</code></td><td>索引年份、月份、天、小时</td></tr>
+</tbody></table>
+<p><code>dateTime</code>索引的选择允许选择索引的精度。应用程序，如这些文档中的电影示例，需要搜索日期，但每年的节点相对较少，可能更喜欢年份标记器;依赖于细粒度日期搜索(如实时传感器读数)的应用程序可能更喜欢小时索引。</p>
+<p>所有的<code>dateTime</code>索引都是可排序的。</p>
+<h4 id="sortable-indices"><a class="header" href="#sortable-indices">Sortable Indices</a></h4>
+<p>并不是所有的索引都在它们索引的值之间建立一个总的顺序。可排序索引允许不等式函数和排序。</p>
+<ul>
+<li>索引<code>int</code>和<code>float</code>是可排序的。</li>
+<li>字符串索引精确是可排序的。</li>
+<li>所有的<code>dateTime</code>索引都是可排序的。</li>
+</ul>
+<p>例如，给定一个字符串类型的边名，要按名称排序或对名称执行不等过滤，必须指定确切的索引。在这种情况下，模式查询将至少返回以下标记器：</p>
+<pre><code class="language-json">{
+  &quot;predicate&quot;: &quot;name&quot;,
+  &quot;type&quot;: &quot;string&quot;,
+  &quot;index&quot;: true,
+  &quot;tokenizer&quot;: [
+    &quot;exact&quot;
+  ]
+}
+</code></pre>
+<h4 id="count-indices"><a class="header" href="#count-indices">Count Indices</a></h4>
+<p>对于具有<code>@count</code> 的<code>predicate</code>，将每个节点的边数索引为索引。这样可以快速查询表单：</p>
+<pre><code class="language-graphql">{
+  q(func: gt(count(pred), threshold)) {
+    ...
+  }
+}
+</code></pre>
+<h3 id="list-类型"><a class="header" href="#list-类型">List 类型</a></h3>
+<p>如果在Schema中指定，变量类型的<code>predicate</code>也可以存储值的<code>list</code>。标量类型需要包含在<code>[]</code>中，以表明它是一个<code>list</code>类型。</p>
+<pre><code class="language-schema">occupations: [string] .
+score: [int] .
+</code></pre>
+<ul>
+<li><code>set</code>操作添加到值列表中。存储值的顺序是不确定的。</li>
+<li><code>delete</code>操作从列表中删除值。</li>
+<li>查询这些谓词将返回数组中的列表。</li>
+<li>索引可以应用于具有列表类型的谓词，并且可以对其使用函数。</li>
+<li>不允许使用这些谓词进行排序。</li>
+<li>这些列表就像一个无序的集合。例如：[&quot;e1&quot;， &quot;e1&quot;， &quot;e2&quot;]可能会被存储为[&quot;e2&quot;， &quot;e1&quot;]，也就是说，重复的值将不会被存储，顺序也不会被保留。</li>
+</ul>
+<h4 id="在list中使用过滤函数"><a class="header" href="#在list中使用过滤函数">在List中使用过滤函数</a></h4>
+<p><code>Dgraph</code>支持基于<code>list</code>的过滤。过滤的工作原理类似于它在<code>edge</code>上的工作原理，并且具有相同的可用函数。</p>
+<p>例如，查询或父边的<code>@filter(eq(occupation，&quot;Teacher&quot;))</code>将显示数组中每个节点的列表中的所有职业，但只包含将<code>Teacher</code>作为职业之一的节点。但是，不支持值边过滤。</p>
+<h3 id="反转一条边"><a class="header" href="#反转一条边">反转一条边</a></h3>
+<p>图的边是单向的。对于节点-节点边，有时建模需要反向边。如果只有一些主-谓词-对象三元组有反向，则必须手动添加它们。但是如果一个谓词总是有反向，如果在模式中指定了<code>@reverse</code>，则<code>Dgraph</code>会计算反向边。</p>
+<p><code>anEdge</code>的反向边是<code>~anEdge</code>。</p>
+<p>对于现有数据，<code>Dgraph</code>计算所有反向边。对于schema变更后添加的数据，<code>Dgraph</code>计算并存储每个添加的三元组的反向边。</p>
+<pre><code class="language-schema">type Person {
+  name string
+}
+type Car {
+  regnbr string
+  owner Person
+}
+owner uid @reverse .
+regnbr string @index(exact) .
+name string @index(exact) .
+</code></pre>
+<p>这使得查询<code>person</code>和他们的车成为可能：</p>
+<pre><code class="language-graphql">q(func type(Person)) {
+  name
+  ~owner { name }
+}
+</code></pre>
+<p>为了在结果中得到一个不同于<code>~owner</code>的键，可以用想要的标签(在本例中是<code>cars</code>)来编写查询：</p>
+<pre><code class="language-graphql">q(func type(Person)) {
+  name
+  cars: ~owner { name }
+}
+</code></pre>
+<p>如果一辆车有多个“所有者”，这也适用：</p>
+<pre><code class="language-schema">owner [uid] @reverse .
+
+</code></pre>
+<p>在这两种情况下，<code>owner</code>边都应该设置在<code>Car</code>上：</p>
+<pre><code class="language-schema">_:p1 &lt;name&gt; &quot;Mary&quot; .
+_:p1 &lt;dgraph.type&gt; &quot;Person&quot; .
+_:c1 &lt;regnbr&gt; &quot;ABC123&quot; .
+_:c1 &lt;dgraph.type&gt; &quot;Car&quot; .
+_:c1 &lt;owner&gt; _:p1
+</code></pre>
+<h3 id="查询-schema"><a class="header" href="#查询-schema">查询 Schema</a></h3>
+<p>你可以使用下面的<code>DQL</code>语句查询整个<code>Schema</code>： </p>
+<pre><code class="language-dql">schema {}
+</code></pre>
+<blockquote>
+<p>注意：与常规查询不同，模式查询没有被花括号包围。此外，模式查询和常规查询不能一起使用。</p>
+</blockquote>
+<p>您可以在查询体中查询特定的模式字段：</p>
+<pre><code class="language-dql">schema {
+  type
+  index
+  reverse
+  tokenizer
+  list
+  count
+  upsert
+  lang
+}
+</code></pre>
+<p>你也可以查询特定的谓词：</p>
+<pre><code class="language-dql">schema(pred: [name, friend]) {
+  type
+  index
+  reverse
+  tokenizer
+  list
+  count
+  upsert
+  lang
+}
+</code></pre>
+<blockquote>
+<p>注意，如果启用了ACL，那么模式查询只返回登录的ACL用户具有读访问权限的谓词。</p>
+</blockquote>
+<p>类型也可以查询。下面是一些示例查询：</p>
+<pre><code class="language-dql">schema(type: Movie) {}
+schema(type: [Person, Animal]) {}
+</code></pre>
+<p>注意，类型查询不包含花括号之间的任何内容。输出将是请求类型的完整定义。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../dql/query_language/debug.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../dql/query_language/type_system.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../dql/query_language/debug.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../dql/query_language/type_system.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

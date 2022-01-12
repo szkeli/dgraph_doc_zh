@@ -1,0 +1,644 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>JSON 变更格式 - Dgraph中文文档</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../overview.html"><strong aria-hidden="true">1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../graphql/overview.html"><strong aria-hidden="true">2.</strong> GraphQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dgraphql/overview.html"><strong aria-hidden="true">2.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../dgraphql/quick_start.html"><strong aria-hidden="true">2.2.</strong> 快速开始</a></li><li class="chapter-item expanded "><a href="../../graphql/how_graphql_works_in_dgraph.html"><strong aria-hidden="true">2.3.</strong> GraphQl 是如何运行在 Dgraph 中的</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/overview.html"><strong aria-hidden="true">2.4.</strong> TODO List示例应用的开发</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/overview.html"><strong aria-hidden="true">2.4.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/schema_design.html"><strong aria-hidden="true">2.4.2.</strong> Schema 设计</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/creating_a_basic_ui.html"><strong aria-hidden="true">2.4.3.</strong> 创建基本的UI界面</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/authorization_rules.html"><strong aria-hidden="true">2.4.4.</strong> 添加认证</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/using_auth0.html"><strong aria-hidden="true">2.4.5.</strong> 使用 Auth0 颁发 Token</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/using_firebase_authentication.html"><strong aria-hidden="true">2.4.6.</strong> 使用 Firebase 认证</a></li><li class="chapter-item expanded "><a href="../../graphql/deploying_on_dgraph_cloud.html"><strong aria-hidden="true">2.4.7.</strong> 部署到 Dgraph 云</a></li></ol></li><li class="chapter-item expanded "><a href="../../graphql/authorization/overview.html"><strong aria-hidden="true">2.5.</strong> 认证</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../graphql/auth_directive.html"><strong aria-hidden="true">2.5.1.</strong> @auth 动词</a></li><li class="chapter-item expanded "><a href="../../graphql/mutations.html"><strong aria-hidden="true">2.5.2.</strong> 在变更中使用 @auth 动词</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/overview.html"><strong aria-hidden="true">2.6.</strong> API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/overview.html"><strong aria-hidden="true">2.6.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../api/requests_and_responses.html"><strong aria-hidden="true">2.6.2.</strong> 请求和请求响应</a></li><li class="chapter-item expanded "><a href="../../api/graphql_variables.html"><strong aria-hidden="true">2.6.3.</strong> GraphQL 变量</a></li><li class="chapter-item expanded "><a href="../../api/graphql_fragment.html"><strong aria-hidden="true">2.6.4.</strong> GraphQL 片段</a></li><li class="chapter-item expanded "><a href="../../api/multiple_graphql_operations_in_a_request.html"><strong aria-hidden="true">2.6.5.</strong> 一次请求多次操作</a></li><li class="chapter-item expanded "><a href="../../api/graphql_errors.html"><strong aria-hidden="true">2.6.6.</strong> GraphQL 错误</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../dql/overview.html"><strong aria-hidden="true">3.</strong> DQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/get_started.html"><strong aria-hidden="true">3.1.</strong> 开始</a></li><li class="chapter-item expanded "><a href="../../dql/tutorials.html"><strong aria-hidden="true">3.2.</strong> 手册</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/dql_fundamentals.html"><strong aria-hidden="true">3.3.</strong> 查询</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/query_language/dql_fundamentals.html"><strong aria-hidden="true">3.3.1.</strong> DQL基础</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/functions.html"><strong aria-hidden="true">3.3.2.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/connecting_filters.html"><strong aria-hidden="true">3.3.3.</strong> 联合过滤</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/aliases.html"><strong aria-hidden="true">3.3.4.</strong> 别名</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/paging.html"><strong aria-hidden="true">3.3.5.</strong> 分页</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/count.html"><strong aria-hidden="true">3.3.6.</strong> 计算总数</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/shorting.html"><strong aria-hidden="true">3.3.7.</strong> 排序</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/multiple_query_blocks.html"><strong aria-hidden="true">3.3.8.</strong> 多查找块</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/query_variables.html"><strong aria-hidden="true">3.3.9.</strong> 查询变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/value_variables.html"><strong aria-hidden="true">3.3.10.</strong> 值变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/aggregation.html"><strong aria-hidden="true">3.3.11.</strong> 聚合</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/math_on_value_variables.html"><strong aria-hidden="true">3.3.12.</strong> 值变量上的数学处理</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/groupby.html"><strong aria-hidden="true">3.3.13.</strong> 分组</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/expand_predicates.html"><strong aria-hidden="true">3.3.14.</strong> 展开操作</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/cascade_directive.html"><strong aria-hidden="true">3.3.15.</strong> 省去操作</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/normalize.html"><strong aria-hidden="true">3.3.16.</strong> @normalize 正则化</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/ignorereflex.html"><strong aria-hidden="true">3.3.17.</strong> @ignorereflex</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/debug.html"><strong aria-hidden="true">3.3.18.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/schema.html"><strong aria-hidden="true">3.3.19.</strong> Schema</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/type_system.html"><strong aria-hidden="true">3.3.20.</strong> 类型系统</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/facets_and_edge_attributes.html"><strong aria-hidden="true">3.3.21.</strong> 边属性</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/shortest_path_query.html"><strong aria-hidden="true">3.3.22.</strong> 最短路径查询</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/recurse_query.html"><strong aria-hidden="true">3.3.23.</strong> 递归查询</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/fragment.html"><strong aria-hidden="true">3.3.24.</strong> 片段</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/graphql_variables.html"><strong aria-hidden="true">3.3.25.</strong> GraphQL变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/indexing_with_custom_tokenizers.html"><strong aria-hidden="true">3.3.26.</strong> 自定义Tokenizers来创建索引</a></li></ol></li><li class="chapter-item expanded "><a href="../../dql/mutations/triples.html"><strong aria-hidden="true">3.4.</strong> 变更</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/mutations/triples.html"><strong aria-hidden="true">3.4.1.</strong> 三元组</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/blank_nodes_and_uid.html"><strong aria-hidden="true">3.4.2.</strong> 空白node和UID</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/externals_ids.html"><strong aria-hidden="true">3.4.3.</strong> 外部ID</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/externals_ids_and_upsert_block.html"><strong aria-hidden="true">3.4.4.</strong> 外部ID和插入块</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/language_and_rdf_types.html"><strong aria-hidden="true">3.4.5.</strong> 语言和RDF类型</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/batch_mutations.html"><strong aria-hidden="true">3.4.6.</strong> 批量变更</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/delete.html"><strong aria-hidden="true">3.4.7.</strong> 删除</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/facet_list_in_rdf.html"><strong aria-hidden="true">3.4.8.</strong> RDF中的边属性</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/mutations_using_curl.html"><strong aria-hidden="true">3.4.9.</strong> 使用cURL变更</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/json_mutation_format.html" class="active"><strong aria-hidden="true">3.4.10.</strong> JSON 变更格式</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/upsert_block.html"><strong aria-hidden="true">3.4.11.</strong> 插入块</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/conditional_upsert.html"><strong aria-hidden="true">3.4.12.</strong> 条件插入</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/reverse_edge.html"><strong aria-hidden="true">3.4.13.</strong> 反向边</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../client/overview.html"><strong aria-hidden="true">4.</strong> 客户端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../client/overview.html"><strong aria-hidden="true">4.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../client/go.html"><strong aria-hidden="true">4.2.</strong> GO</a></li><li class="chapter-item expanded "><a href="../../client/c#.html"><strong aria-hidden="true">4.3.</strong> C#</a></li><li class="chapter-item expanded "><a href="../../client/java.html"><strong aria-hidden="true">4.4.</strong> Java</a></li><li class="chapter-item expanded "><a href="../../client/javascript/grpc_client.html"><strong aria-hidden="true">4.5.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../client/javascript/grpc_client.html"><strong aria-hidden="true">4.5.1.</strong> gRpc 客户端</a></li><li class="chapter-item expanded "><a href="../../client/javascript/http_client.html"><strong aria-hidden="true">4.5.2.</strong> HTTP 客户端</a></li></ol></li><li class="chapter-item expanded "><a href="../../client/python.html"><strong aria-hidden="true">4.6.</strong> Python</a></li><li class="chapter-item expanded "><a href="../../client/unofficial_dgraph_clients.html"><strong aria-hidden="true">4.7.</strong> 非官方客户端</a></li><li class="chapter-item expanded "><a href="../../client/raw_http.html"><strong aria-hidden="true">4.8.</strong> 原生HTTP</a></li></ol></li><li class="chapter-item expanded "><a href="../../ratel_ui/overview.html"><strong aria-hidden="true">5.</strong> Ratel 界面</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../ratel_ui/overview.html"><strong aria-hidden="true">5.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/connection.html"><strong aria-hidden="true">5.2.</strong> 连接</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/console.html"><strong aria-hidden="true">5.3.</strong> 控制台</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/schema.html"><strong aria-hidden="true">5.4.</strong> Schema</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/cluster.html"><strong aria-hidden="true">5.5.</strong> 集群</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/backups.html"><strong aria-hidden="true">5.6.</strong> 备份</a></li></ol></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/overview.html"><strong aria-hidden="true">6.</strong> 部署和管理</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../deploy_and_manage/overview.html"><strong aria-hidden="true">6.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/download.html"><strong aria-hidden="true">6.2.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/config.html"><strong aria-hidden="true">6.3.</strong> 配置</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/more_about_dgraph_zero.html"><strong aria-hidden="true">6.4.</strong> 关于 Dgraph Zero 的更多信息</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/more_about_dgraph_alpha.html"><strong aria-hidden="true">6.5.</strong> 关于 Dgraph Alpha 的更多信息</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/single_host_setup.html"><strong aria-hidden="true">6.6.</strong> 单机部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/multi_host_setup.html"><strong aria-hidden="true">6.7.</strong> 多机部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/using_k8s.html"><strong aria-hidden="true">6.8.</strong> 使用 K8S</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/cluster_setup.html"><strong aria-hidden="true">6.9.</strong> 集群部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/cluster_checklist.html"><strong aria-hidden="true">6.10.</strong> 集群部署注意事项</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/production_checklist.html"><strong aria-hidden="true">6.11.</strong> 生产环境注意事项</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/data_decryption.html"><strong aria-hidden="true">6.12.</strong> 数据加密</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/dgraph_cli_reference.html"><strong aria-hidden="true">6.13.</strong> Dgraph 命令行接口使用手册</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/troubleshooting.html"><strong aria-hidden="true">6.14.</strong> 问题解决</a></li></ol></li><li class="chapter-item expanded "><a href="../../enterprise_features/access_control_lists.html"><strong aria-hidden="true">7.</strong> 付费版特性</a></li><li class="chapter-item expanded "><a href="../../migration/loading_csv_data.html"><strong aria-hidden="true">8.</strong> 数据迁移</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../migration/loading_csv_data.html"><strong aria-hidden="true">8.1.</strong> 加载CSV数据</a></li></ol></li><li class="chapter-item expanded "><a href="../../FAQ.html"><strong aria-hidden="true">9.</strong> 常见问题和解决方案</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/retrieving_debug_information.html"><strong aria-hidden="true">10.</strong> 最佳实践</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../how_to_guides/retrieving_debug_information.html"><strong aria-hidden="true">10.1.</strong> 检索调试信息</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/shell_completion.html"><strong aria-hidden="true">10.2.</strong> 命令行补全</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_debug_tool.html"><strong aria-hidden="true">10.3.</strong> 使用调试工具</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_dgraph_sentry_integration.html"><strong aria-hidden="true">10.4.</strong> 使用 Dgraph Sentry 集成</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_increment_tool.html"><strong aria-hidden="true">10.5.</strong> 使用增量工具</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/giving_nodes_a_type.html"><strong aria-hidden="true">10.6.</strong> 设置一个node的类型</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/load_balancing_queries_with_nginx.html"><strong aria-hidden="true">10.7.</strong> 使用 nginx 做查询负载均衡</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/a_simple_login_system.html"><strong aria-hidden="true">10.8.</strong> 一个简单的登录系统</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/upserts.html"><strong aria-hidden="true">10.9.</strong> 插入</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/run_jepsen_tests.html"><strong aria-hidden="true">10.10.</strong> 运行 Jepsen 测试</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/concurrent_mutations_and_conflicts.html"><strong aria-hidden="true">10.11.</strong> 并行变更和冲突</a></li></ol></li><li class="chapter-item expanded "><a href="../../design_concepts/concepts.html"><strong aria-hidden="true">11.</strong> 设计原则</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../design_concepts/concepts.html"><strong aria-hidden="true">11.1.</strong> 原则</a></li></ol></li><li class="chapter-item expanded "><a href="../../releases.html"><strong aria-hidden="true">12.</strong> 版本更新</a></li><li class="chapter-item expanded "><a href="../../tutorials.html"><strong aria-hidden="true">13.</strong> 手册总览</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Dgraph中文文档</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="json-变更格式-json-mutation-format"><a class="header" href="#json-变更格式-json-mutation-format">JSON 变更格式 (JSON Mutation Format)</a></h1>
+<p>你也能够通过<code>JSON</code>对象指定一个变更。这可以让变更以更自然的方式表达出来。它还消除了应用程序自定义序列化代码的需要，因为大多数语言已经有了<code>JSON</code>处理库。</p>
+<p>当<code>Dgraph</code>接收到<code>JSON</code>对象的变更时，它首先将其转换为内部边格式，然后再将其处理为<code>Dgraph</code>。</p>
+<p><strong>对于<code>JSON</code>：</strong></p>
+<p>JSON -&gt; Edges -&gt; Posting list</p>
+<p><strong>对于<code>RDF</code>：</strong></p>
+<p>RDF -&gt; Edges -&gt; Posting list</p>
+<p>每个JSON对象表示图中的单个节点。</p>
+<blockquote>
+<p>注意：<code>JSON</code>变更可以通过<code>Go</code>客户端、<code>JavaScript</code>客户端和<code>Java</code>客户端等<code>gRPC</code>客户端使用，也可以通过<code>dgraph-js-http</code>和<code>cURL</code>对<code>HTTP</code>客户端使用。在<a href="https://dgraph.io/docs/mutations/json-mutation-format/#using-json-operations-via-curl">这里</a>可以看到更多关于<code>cURL</code>的信息。</p>
+</blockquote>
+<h2 id="设置字面量值"><a class="header" href="#设置字面量值">设置字面量值</a></h2>
+<p>当设置新值时，变更消息中的<code>set_json</code>字段应该包含一个<code>JSON</code>对象。</p>
+<p>字面量值可以直接通过向<code>JSON</code>对象设置<code>key/value</code>来进行。<code>key</code>将表示谓词(predicate)，<code>value</code>将表示对象。</p>
+<p>例如：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;diggy&quot;,
+  &quot;food&quot;: &quot;pizza&quot;,
+  &quot;dgraph.type&quot;: &quot;Mascot&quot;
+}
+</code></pre>
+<p>上面<code>JSON</code>对象将被转化为如下<code>RDF</code>：</p>
+<pre><code class="language-rdf">_:blank-0 &lt;name&gt; &quot;diggy&quot; .
+_:blank-0 &lt;food&gt; &quot;pizza&quot; .
+_:blank-0 &lt;dgraph.type&gt; &quot;Mascot&quot; .
+</code></pre>
+<p>变更的返回结果是一个<code>Map</code>，该<code>Map</code>具有一个<code>uid</code>，这个<code>uid</code>对应于键<code>blank-0</code>。你也可以像下面这样指定你自己的<code>uid</code>键：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;_:diggy&quot;,
+  &quot;name&quot;: &quot;diggy&quot;,
+  &quot;food&quot;: &quot;pizza&quot;,
+  &quot;dgraph.type&quot;: &quot;Mascot&quot;
+}
+</code></pre>
+<p>在这种情况下，分配的<code>uid</code>映射将有一个名为<code>diggy</code>的键，其值是分配给它的<code>uid</code>。</p>
+<h3 id="禁止值-forbidden-values"><a class="header" href="#禁止值-forbidden-values">禁止值 (Forbidden values)</a></h3>
+<blockquote>
+<p>使用<code>JSON</code>提交变更时，<code>uid()</code> 和 <code>val()</code> 这两个字符串是不允许使用的。</p>
+</blockquote>
+<p>例如：<code>Dgraph</code>不能处理以下提交的变更：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;uid(t)&quot;,
+  &quot;user_name&quot;: &quot;uid(s ia)&quot;,
+  &quot;name&quot;: &quot;val (s kl)&quot;,
+}
+</code></pre>
+<h2 id="多语言支持-language-support"><a class="header" href="#多语言支持-language-support">多语言支持 (Language Support)</a></h2>
+<p><code>RDF</code>变更和<code>JSON</code>变更之间的一个重要区别在于指定字符串值的语言。在<code>JSON</code>中，语言标记被附加到边名，而不是像<code>RDF</code>那样的值。</p>
+<p>例如，下面是一个使用<code>JSON</code>提交的变更：</p>
+<pre><code class="language-json">{
+  &quot;food&quot;: &quot;taco&quot;,
+  &quot;rating@en&quot;: &quot;tastes good&quot;,
+  &quot;rating@es&quot;: &quot;sabe bien&quot;,
+  &quot;rating@fr&quot;: &quot;c'est bon&quot;,
+  &quot;rating@it&quot;: &quot;è buono&quot;,
+  &quot;dgraph.type&quot;: &quot;Food&quot;
+}
+</code></pre>
+<p>作为对比，使用<code>RDF</code>提交相同的变更需要：</p>
+<pre><code class="language-rdf">_:blank-0 &lt;food&gt; &quot;taco&quot; .
+_:blank-0 &lt;dgraph.type&gt; &quot;Food&quot; .
+_:blank-0 &lt;rating&gt; &quot;tastes good&quot;@en .
+_:blank-0 &lt;rating&gt; &quot;sabe bien&quot;@es .
+_:blank-0 &lt;rating&gt; &quot;c'est bon&quot;@fr .
+_:blank-0 &lt;rating&gt; &quot;è buono&quot;@it .
+</code></pre>
+<h2 id="地理位置支持-geolocation-support"><a class="header" href="#地理位置支持-geolocation-support">地理位置支持 (Geolocation support)</a></h2>
+<p><code>JSON</code>变更支持地理位置数据。地理位置数据以<code>JSON</code>对象的形式输入，带有<code>type</code>和<code>coordinates</code>键。记住，我们只支持在<code>Point</code>、<code>Polygon</code>和<code>MultiPolygon</code>类型上建立索引，但是我们可以存储其他类型的地理位置数据。下面是一个例子：</p>
+<pre><code class="language-json">{
+  &quot;food&quot;: &quot;taco&quot;,
+  &quot;location&quot;: {
+    &quot;type&quot;: &quot;Point&quot;,
+    &quot;coordinates&quot;: [1.0, 2.0]
+  }
+}
+</code></pre>
+<h2 id="引用已存在的节点-referencing-existing-nodes"><a class="header" href="#引用已存在的节点-referencing-existing-nodes">引用已存在的节点 (Referencing existing nodes)</a></h2>
+<p>如果<code>JSON</code>对象包含一个名为<code>uid</code>的字段，那么该字段将被解释为图中现有节点的<code>uid</code>。这种机制允许您引用现有的节点。</p>
+<p>例如：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;0x467ba0&quot;,
+  &quot;food&quot;: &quot;taco&quot;,
+  &quot;rating&quot;: &quot;tastes good&quot;,
+  &quot;dgraph.type&quot;: &quot;Food&quot;
+}
+</code></pre>
+<p>上面的<code>JSON</code>对象将被转化为以下<code>RDF</code>：</p>
+<pre><code class="language-rdf">&lt;0x467ba0&gt; &lt;food&gt; &quot;taco&quot; .
+&lt;0x467ba0&gt; &lt;rating&gt; &quot;tastes good&quot; .
+&lt;0x467ba0&gt; &lt;dgraph.type&gt; &quot;Food&quot; .
+</code></pre>
+<h2 id="节点之间的边-edges-between-nodes"><a class="header" href="#节点之间的边-edges-between-nodes">节点之间的边 (Edges between nodes)</a></h2>
+<p>节点之间的边以类似于字面量值的方式表示，只是对象是一个<code>JSON</code>对象：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Alice&quot;,
+  &quot;friend&quot;: {
+    &quot;name&quot;: &quot;Betty&quot;
+  }
+}
+</code></pre>
+<p>上面的<code>JSON</code>对象将会被转化为：</p>
+<pre><code class="language-rdf">_:blank-0 &lt;name&gt; &quot;Alice&quot; .
+_:blank-0 &lt;friend&gt; _:blank-1 .
+_:blank-1 &lt;name&gt; &quot;Betty&quot; .
+</code></pre>
+<p>变更的结果将包含分配给<code>blank-0</code>和<code>blank-1</code>节点的<code>uid</code>。如果您想在不同的键下返回这些<code>uid</code>，您可以将<code>uid</code>字段指定为一个空白节点：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;_:alice&quot;,
+  &quot;name&quot;: &quot;Alice&quot;,
+  &quot;friend&quot;: {
+    &quot;uid&quot;: &quot;_:bob&quot;,
+    &quot;name&quot;: &quot;Betty&quot;
+  }
+}
+</code></pre>
+<p>上面的<code>JSON</code>对象将会被转化为：</p>
+<pre><code class="language-rdf">_:alice &lt;name&gt; &quot;Alice&quot; .
+_:alice &lt;friend&gt; _:bob .
+_:bob &lt;name&gt; &quot;Betty&quot; .
+</code></pre>
+<p>可以使用与添加字面量值相同的方式引用现有节点。例如连接两个现有节点：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;0x123&quot;,
+  &quot;link&quot;: {
+    &quot;uid&quot;: &quot;0x456&quot;
+  }
+}
+</code></pre>
+<p>将会被转化为：</p>
+<pre><code class="language-rdf">&lt;0x123&gt; &lt;link&gt; &lt;0x456&gt; .
+</code></pre>
+<blockquote>
+<p>注意：一个常见的错误是尝试使用<code>{&quot;uid&quot;:&quot;0x123&quot;，&quot;link&quot;:&quot;0x456&quot;}</code>。这将导致一个错误：<code>Dgraph</code>将这个<code>JSON</code>对象解释为将链接谓词设置为字符串<code>0x456</code>，这通常不是你希望的。</p>
+</blockquote>
+<h2 id="删除字面量值-deleting-literal-values"><a class="header" href="#删除字面量值-deleting-literal-values">删除字面量值 (Deleting literal values)</a></h2>
+<p><code>JSON</code>也能提交删除变更。</p>
+<p>要发送删除变更，在变更消息中使用<code>delete_json</code>字段而不是<code>set_json</code>字段。</p>
+<blockquote>
+<p>注意：如果您使用<code>dgraph-js-http</code>客户端或<code>Ratel UI</code>，请检查<code>JSON</code>语法使用原始<code>HTTP</code>或<code>Ratel UI</code>部分。</p>
+</blockquote>
+<p>在使用删除变更时，始终必须引用现有节点。因此，必须提供每个<code>JSON</code>对象的<code>uid</code>字段。应该删除的谓词应该设置为<code>JSON</code>值<code>null</code>。</p>
+<p>例如，要删除食物评级：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;0x467ba0&quot;,
+  &quot;rating&quot;: null
+}
+</code></pre>
+<h2 id="删除边"><a class="header" href="#删除边">删除边</a></h2>
+<p>删除一条边需要创建该边的相同<code>JSON</code>对象。例如，删除谓词链接<code>0x123</code>到<code>0x456</code>：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;0x123&quot;,
+  &quot;link&quot;: {
+    &quot;uid&quot;: &quot;0x456&quot;
+  }
+}
+</code></pre>
+<p>从单个节点发出的谓词(predicate)的所有边都可以一次删除(相当于删除<code>S P *</code>)：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;0x123&quot;,
+  &quot;link&quot;: null
+}
+</code></pre>
+<p>如果没有指定谓词，则删除节点的所有已知出站边(到其他节点和到字面量值)(对应于删除<code>S * *</code>)。要删除的谓词是使用类型系统派生的。有关更多信息，请参阅<a href="https://dgraph.io/docs/mutations/delete/">RDF格式文档</a>和<a href="https://dgraph.io/docs/query-language/type-system/">类型系统</a>部分：</p>
+<pre><code class="language-json">{
+  &quot;uid&quot;: &quot;0x123&quot;
+}
+</code></pre>
+<h2 id="facets"><a class="header" href="#facets">Facets</a></h2>
+<p>可以通过使用<code>|</code>字符来分隔<code>JSON</code>对象字段名中的谓词和<code>facet</code>键来创建<code>facet</code>。这与用于在查询结果中显示<code>facet</code>的编码模式相同。如：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Carol&quot;,
+  &quot;name|initial&quot;: &quot;C&quot;,
+  &quot;dgraph.type&quot;: &quot;Person&quot;,
+  &quot;friend&quot;: {
+    &quot;name&quot;: &quot;Daryl&quot;,
+    &quot;friend|close&quot;: &quot;yes&quot;,
+    &quot;dgraph.type&quot;: &quot;Person&quot;
+  }
+}
+</code></pre>
+<p>等价于下面的<code>RDF</code>：</p>
+<pre><code class="language-rdf">_:blank-0 &lt;name&gt; &quot;Carol&quot; (initial=&quot;C&quot;) .
+_:blank-0 &lt;dgraph.type&gt; &quot;Person&quot; .
+_:blank-0 &lt;friend&gt; _:blank-1 (close=&quot;yes&quot;) .
+_:blank-1 &lt;name&gt; &quot;Daryl&quot; .
+_:blank-1 &lt;dgraph.type&gt; &quot;Person&quot; .
+</code></pre>
+<p><code>facet</code>不包含类型信息，但是<code>Dgraph</code>将尝试从输入猜测类型。如果一个<code>facet</code>的值可以被解析为一个数字，那么它将被转换为<code>float</code>或<code>int</code>。如果它可以被解析为一个布尔值，那么它将被存储为一个布尔值。如果值是字符串，如果该字符串与<code>Dgraph</code>能识别的时间格式(<code>YYYY</code>, <code>MM-YYYY</code>, <code>DD-MM-YYYY</code>, <code>RFC339</code>等)中的一种相匹配，那么它将被存储为<code>datetime</code>，否则将被存储为双引号字符串。如果不想冒<code>facet</code>数据被误读为时间值的风险，最好将数值数据存储为<code>int</code>或<code>float</code>类型。</p>
+<h2 id="删除-facets"><a class="header" href="#删除-facets">删除 Facets</a></h2>
+<p>删除<code>Facet</code>最简单的方法是覆盖它。当您为没有<code>facet</code>的相同实体创建一个新的变更时，现有的<code>facet</code>将被自动删除：</p>
+<pre><code class="language-rdf">&lt;0x1&gt; &lt;name&gt; &quot;Carol&quot; .
+&lt;0x1&gt; &lt;friend&gt; &lt;0x2&gt; .
+</code></pre>
+<p>另一种方法是使用<code>Upsert Block</code>。</p>
+<p>在下面的查询中，我们将删除<code>Name</code>和<code>Friend</code>谓词中的<code>Facet</code>。要覆盖，我们需要收集执行此操作的边的值，并使用<code>val(var)</code>函数来完成覆盖：</p>
+<pre><code class="language-bash">curl -H &quot;Content-Type: application/rdf&quot; -X POST localhost:8080/mutate?commitNow=true -d $'
+upsert {
+  query {
+    user as var(func: eq(name, &quot;Carol&quot;)){
+      Name as name
+      Friends as friend
+    }
+  }
+
+  mutation {
+    set {
+      uid(user) &lt;name&gt; val(Name) .
+      uid(user) &lt;friend&gt; uid(Friends) .
+    }
+  }
+}' | jq
+</code></pre>
+<h2 id="使用-json创建一个list然后对这个list操作"><a class="header" href="#使用-json创建一个list然后对这个list操作">使用 <code>JSON</code>创建一个<code>List</code>然后对这个<code>List</code>操作：</a></h2>
+<p>Schema:</p>
+<pre><code class="language-schema">testList: [string] .
+</code></pre>
+<p>在<code>testList</code>中添加一些数据：</p>
+<pre><code class="language-json">{
+  &quot;testList&quot;: [
+    &quot;Grape&quot;,
+    &quot;Apple&quot;,
+    &quot;Strawberry&quot;,
+    &quot;Banana&quot;,
+    &quot;watermelon&quot;
+  ]
+}
+</code></pre>
+<p>现在让我们把<code>Apple</code>从这个列表中删除(注意，<code>List</code>中的项是区分大小写的)：</p>
+<pre><code class="language-dql">{
+  q(func: has(testList)) {
+    uid
+    testList
+  }
+}
+</code></pre>
+<pre><code class="language-json">{
+  &quot;delete&quot;: {
+    &quot;uid&quot;: &quot;0x6&quot;, #UID of the list.
+    &quot;testList&quot;: &quot;Apple&quot;
+  }
+}
+</code></pre>
+<p>当然，你也能够一次性删除多个值：</p>
+<pre><code class="language-json">{
+  &quot;delete&quot;: {
+    &quot;uid&quot;: &quot;0x6&quot;,
+    &quot;testList&quot;: [
+      &quot;Strawberry&quot;,
+      &quot;Banana&quot;,
+      &quot;watermelon&quot;
+    ]
+  }
+}
+</code></pre>
+<blockquote>
+<p>注意：如果您使用<code>dgraph-js-http</code>客户端或<code>Ratel UI</code>，请检查<code>JSON</code>语法使用原始<code>HTTP</code>或<code>Ratel UI</code>部分。</p>
+</blockquote>
+<p>添加一个水果：</p>
+<pre><code class="language-json">{
+   &quot;uid&quot;: &quot;0x6&quot;, #UID of the list.
+   &quot;testList&quot;: &quot;Pineapple&quot;
+}
+</code></pre>
+<h2 id="json-与-list-类型的-facet"><a class="header" href="#json-与-list-类型的-facet">JSON 与 List 类型的 facet</a></h2>
+<p>schema: </p>
+<pre><code class="language-rdf">&lt;name&gt;: string @index(exact).
+&lt;nickname&gt;: [string] .
+</code></pre>
+<p>要创建<code>list</code>类型的谓词(predicate)，需要指定单个列表中的所有值。所有谓词值的<code>facet</code>应该一起指定。它是用<code>map</code>格式完成的，列表中的谓词值的索引是<code>map</code>键，它们各自的<code>facet</code>值是<code>map</code>值。不包含<code>facet</code>值的谓词值将从<code>facet</code>映射中丢失。如：</p>
+<pre><code class="language-json">{
+  &quot;set&quot;: [
+    {
+      &quot;uid&quot;: &quot;_:Julian&quot;,
+      &quot;name&quot;: &quot;Julian&quot;,
+      &quot;nickname&quot;: [&quot;Jay-Jay&quot;, &quot;Jules&quot;, &quot;JB&quot;],
+      &quot;nickname|kind&quot;: {
+        &quot;0&quot;: &quot;first&quot;,
+        &quot;1&quot;: &quot;official&quot;,
+        &quot;2&quot;: &quot;CS-GO&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<p>在上面您可以看到，我们有三个值，它们各自具有方面，可以进入列表。你可以运行这个查询来检查包含<code>facet</code>的列表：</p>
+<pre><code class="language-dql">{
+  q(func: eq(name,&quot;Julian&quot;)) {
+  uid
+  nickname @facets
+  }
+}
+</code></pre>
+<p>之后如果希望使用<code>facet</code>添加更多值，只需执行相同的过程，但现在必须使用相应节点的<code>UID</code>，而不是使用空白节点：</p>
+<pre><code class="language-json">{
+  &quot;set&quot;: [
+    {
+      &quot;uid&quot;: &quot;0x3&quot;,
+      &quot;nickname|kind&quot;: &quot;Internet&quot;,
+      &quot;nickname&quot;: &quot;@JJ&quot;
+    }
+  ]
+}
+</code></pre>
+<p>最后返回的结果：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;q&quot;: [
+      {
+        &quot;uid&quot;: &quot;0x3&quot;,
+        &quot;nickname|kind&quot;: {
+          &quot;0&quot;: &quot;first&quot;,
+          &quot;1&quot;: &quot;Internet&quot;,
+          &quot;2&quot;: &quot;official&quot;,
+          &quot;3&quot;: &quot;CS-GO&quot;
+        },
+        &quot;nickname&quot;: [
+          &quot;Jay-Jay&quot;,
+          &quot;@JJ&quot;,
+          &quot;Jules&quot;,
+          &quot;JB&quot;
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<h2 id="指定多个操作"><a class="header" href="#指定多个操作">指定多个操作</a></h2>
+<p>当指定添加或删除变更时，可以使用<code>JSON</code>数组同时指定多个节点。</p>
+<p>例如，下面的<code>JSON</code>对象可以用来添加两个新节点，每个节点都有一个名称：</p>
+<pre><code class="language-json">[
+  {
+    &quot;name&quot;: &quot;Edward&quot;
+  },
+  {
+    &quot;name&quot;: &quot;Fredric&quot;
+  }
+]
+</code></pre>
+<h2 id="使用-raw-http-或-ratel-ui-解析-json"><a class="header" href="#使用-raw-http-或-ratel-ui-解析-json">使用 <code>Raw HTTP</code> 或 <code>Ratel UI</code> 解析 <code>JSON</code></a></h2>
+<p>这种语法可以在最新版本的<code>Ratel</code>中使用，也可以在<code>dgraph-js-http</code>客户端中使用，甚至可以通过<code>cURL</code>使用。</p>
+<p>您也可以下载<code>Ratel UI</code>。</p>
+<p>变更：</p>
+<pre><code class="language-dql">{
+  &quot;set&quot;: [
+    {
+      # One JSON obj in here
+    },
+    {
+      # Another JSON obj in here for multiple operations
+    }
+  ]
+}
+</code></pre>
+<p>删除：
+删除操作与删除字面量值和删除边相同。</p>
+<pre><code class="language-dql">{
+  &quot;delete&quot;: [
+    {
+      # One JSON obj in here
+    },
+    {
+      # Another JSON obj in here for multiple operations
+    }
+  ]
+}
+</code></pre>
+<h2 id="通过-curl-使用-json-操作"><a class="header" href="#通过-curl-使用-json-操作">通过 <code>cURL</code> 使用 <code>JSON</code> 操作</a></h2>
+<p>首先，你需要设置 <code>HTTP</code> 相应的请求头为 <code>application/json</code></p>
+<pre><code class="language-bash">-H 'Content-Type: application/json'
+</code></pre>
+<blockquote>
+<p>注意：为了使用<code>jq</code>进行<code>JSON</code>格式化，你需要<code>jq</code>包。有关安装细节，请参阅jq下载页面。你也可以使用<code>Python</code>的内置<code>json</code>工具模块，使用<code>python -m json</code>。</p>
+</blockquote>
+<pre><code class="language-bash">curl -H &quot;Content-Type: application/json&quot; -X POST localhost:8080/mutate?commitNow=true -d $'
+    {
+      &quot;set&quot;: [
+        {
+          &quot;name&quot;: &quot;Alice&quot;
+        },
+        {
+          &quot;name&quot;: &quot;Bob&quot;
+        }
+      ]
+    }' | jq
+
+</code></pre>
+<p>删除操作：</p>
+<pre><code class="language-bash">curl -H &quot;Content-Type: application/json&quot; -X POST localhost:8080/mutate?commitNow=true -d $'
+    {
+      &quot;delete&quot;: [
+        {
+          &quot;uid&quot;: &quot;0xa&quot;
+        }
+      ]
+    }' | jq
+</code></pre>
+<p>或者你也可以提交一个在文件中的变更：</p>
+<pre><code class="language-bash">curl -H &quot;Content-Type: application/json&quot; -X POST localhost:8080/mutate?commitNow=true -d @data.json
+</code></pre>
+<p><code>data.json</code> 中文件内容类似于：</p>
+<pre><code class="language-json">{
+  &quot;set&quot;: [
+    {
+      &quot;name&quot;: &quot;Alice&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Bob&quot;
+    }
+  ]
+}
+</code></pre>
+<p>对于<code>HTTP</code>上的变更，<code>JSON</code>文件必须遵循相同的格式：一个带有<code>set</code>或<code>delete</code>键的<code>JSON</code>对象和一个用于变更的<code>JSON</code>对象数组。如果您已经拥有一个包含数据数组的文件，则可以使用<code>jq</code>将数据转换为适当的格式。例如，如果你的<code>Json</code>文件看起来像这样：</p>
+<pre><code class="language-json">[
+  {
+    &quot;name&quot;: &quot;Alice&quot;
+  },
+  {
+    &quot;name&quot;: &quot;Bob&quot;
+  }
+]
+</code></pre>
+<p>然后可以使用以下<code>jq</code>命令将数据转换为适当的格式，其中<code>.</code>在<code>jq '{set: .}'</code>中表示<code>data.json</code>的内容：</p>
+<pre><code class="language-bash">cat data.json | jq '{set: .}'
+</code></pre>
+<pre><code class="language-json">{
+  &quot;set&quot;: [
+    {
+      &quot;name&quot;: &quot;Alice&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Bob&quot;
+    }
+  ]
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../dql/mutations/mutations_using_curl.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../dql/mutations/upsert_block.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../dql/mutations/mutations_using_curl.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../dql/mutations/upsert_block.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

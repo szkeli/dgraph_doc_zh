@@ -1,0 +1,1345 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>函数 - Dgraph中文文档</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../overview.html"><strong aria-hidden="true">1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../graphql/overview.html"><strong aria-hidden="true">2.</strong> GraphQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dgraphql/overview.html"><strong aria-hidden="true">2.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../dgraphql/quick_start.html"><strong aria-hidden="true">2.2.</strong> 快速开始</a></li><li class="chapter-item expanded "><a href="../../graphql/how_graphql_works_in_dgraph.html"><strong aria-hidden="true">2.3.</strong> GraphQl 是如何运行在 Dgraph 中的</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/overview.html"><strong aria-hidden="true">2.4.</strong> TODO List示例应用的开发</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/overview.html"><strong aria-hidden="true">2.4.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/schema_design.html"><strong aria-hidden="true">2.4.2.</strong> Schema 设计</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/creating_a_basic_ui.html"><strong aria-hidden="true">2.4.3.</strong> 创建基本的UI界面</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/authorization_rules.html"><strong aria-hidden="true">2.4.4.</strong> 添加认证</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/using_auth0.html"><strong aria-hidden="true">2.4.5.</strong> 使用 Auth0 颁发 Token</a></li><li class="chapter-item expanded "><a href="../../graphql/todo_list_app_tutorial/using_firebase_authentication.html"><strong aria-hidden="true">2.4.6.</strong> 使用 Firebase 认证</a></li><li class="chapter-item expanded "><a href="../../graphql/deploying_on_dgraph_cloud.html"><strong aria-hidden="true">2.4.7.</strong> 部署到 Dgraph 云</a></li></ol></li><li class="chapter-item expanded "><a href="../../graphql/authorization/overview.html"><strong aria-hidden="true">2.5.</strong> 认证</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../graphql/auth_directive.html"><strong aria-hidden="true">2.5.1.</strong> @auth 动词</a></li><li class="chapter-item expanded "><a href="../../graphql/mutations.html"><strong aria-hidden="true">2.5.2.</strong> 在变更中使用 @auth 动词</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/overview.html"><strong aria-hidden="true">2.6.</strong> API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/overview.html"><strong aria-hidden="true">2.6.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../api/requests_and_responses.html"><strong aria-hidden="true">2.6.2.</strong> 请求和请求响应</a></li><li class="chapter-item expanded "><a href="../../api/graphql_variables.html"><strong aria-hidden="true">2.6.3.</strong> GraphQL 变量</a></li><li class="chapter-item expanded "><a href="../../api/graphql_fragment.html"><strong aria-hidden="true">2.6.4.</strong> GraphQL 片段</a></li><li class="chapter-item expanded "><a href="../../api/multiple_graphql_operations_in_a_request.html"><strong aria-hidden="true">2.6.5.</strong> 一次请求多次操作</a></li><li class="chapter-item expanded "><a href="../../api/graphql_errors.html"><strong aria-hidden="true">2.6.6.</strong> GraphQL 错误</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../dql/overview.html"><strong aria-hidden="true">3.</strong> DQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/get_started.html"><strong aria-hidden="true">3.1.</strong> 开始</a></li><li class="chapter-item expanded "><a href="../../dql/tutorials.html"><strong aria-hidden="true">3.2.</strong> 手册</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/dql_fundamentals.html"><strong aria-hidden="true">3.3.</strong> 查询</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/query_language/dql_fundamentals.html"><strong aria-hidden="true">3.3.1.</strong> DQL基础</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/functions.html" class="active"><strong aria-hidden="true">3.3.2.</strong> 函数</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/connecting_filters.html"><strong aria-hidden="true">3.3.3.</strong> 联合过滤</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/aliases.html"><strong aria-hidden="true">3.3.4.</strong> 别名</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/paging.html"><strong aria-hidden="true">3.3.5.</strong> 分页</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/count.html"><strong aria-hidden="true">3.3.6.</strong> 计算总数</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/shorting.html"><strong aria-hidden="true">3.3.7.</strong> 排序</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/multiple_query_blocks.html"><strong aria-hidden="true">3.3.8.</strong> 多查找块</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/query_variables.html"><strong aria-hidden="true">3.3.9.</strong> 查询变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/value_variables.html"><strong aria-hidden="true">3.3.10.</strong> 值变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/aggregation.html"><strong aria-hidden="true">3.3.11.</strong> 聚合</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/math_on_value_variables.html"><strong aria-hidden="true">3.3.12.</strong> 值变量上的数学处理</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/groupby.html"><strong aria-hidden="true">3.3.13.</strong> 分组</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/expand_predicates.html"><strong aria-hidden="true">3.3.14.</strong> 展开操作</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/cascade_directive.html"><strong aria-hidden="true">3.3.15.</strong> 省去操作</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/normalize.html"><strong aria-hidden="true">3.3.16.</strong> @normalize 正则化</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/ignorereflex.html"><strong aria-hidden="true">3.3.17.</strong> @ignorereflex</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/debug.html"><strong aria-hidden="true">3.3.18.</strong> Debug</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/schema.html"><strong aria-hidden="true">3.3.19.</strong> Schema</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/type_system.html"><strong aria-hidden="true">3.3.20.</strong> 类型系统</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/facets_and_edge_attributes.html"><strong aria-hidden="true">3.3.21.</strong> 边属性</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/shortest_path_query.html"><strong aria-hidden="true">3.3.22.</strong> 最短路径查询</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/recurse_query.html"><strong aria-hidden="true">3.3.23.</strong> 递归查询</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/fragment.html"><strong aria-hidden="true">3.3.24.</strong> 片段</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/graphql_variables.html"><strong aria-hidden="true">3.3.25.</strong> GraphQL变量</a></li><li class="chapter-item expanded "><a href="../../dql/query_language/indexing_with_custom_tokenizers.html"><strong aria-hidden="true">3.3.26.</strong> 自定义Tokenizers来创建索引</a></li></ol></li><li class="chapter-item expanded "><a href="../../dql/mutations/triples.html"><strong aria-hidden="true">3.4.</strong> 变更</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../dql/mutations/triples.html"><strong aria-hidden="true">3.4.1.</strong> 三元组</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/blank_nodes_and_uid.html"><strong aria-hidden="true">3.4.2.</strong> 空白node和UID</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/externals_ids.html"><strong aria-hidden="true">3.4.3.</strong> 外部ID</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/externals_ids_and_upsert_block.html"><strong aria-hidden="true">3.4.4.</strong> 外部ID和插入块</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/language_and_rdf_types.html"><strong aria-hidden="true">3.4.5.</strong> 语言和RDF类型</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/batch_mutations.html"><strong aria-hidden="true">3.4.6.</strong> 批量变更</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/delete.html"><strong aria-hidden="true">3.4.7.</strong> 删除</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/facet_list_in_rdf.html"><strong aria-hidden="true">3.4.8.</strong> RDF中的边属性</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/mutations_using_curl.html"><strong aria-hidden="true">3.4.9.</strong> 使用cURL变更</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/json_mutation_format.html"><strong aria-hidden="true">3.4.10.</strong> JSON 变更格式</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/upsert_block.html"><strong aria-hidden="true">3.4.11.</strong> 插入块</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/conditional_upsert.html"><strong aria-hidden="true">3.4.12.</strong> 条件插入</a></li><li class="chapter-item expanded "><a href="../../dql/mutations/reverse_edge.html"><strong aria-hidden="true">3.4.13.</strong> 反向边</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../client/overview.html"><strong aria-hidden="true">4.</strong> 客户端</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../client/overview.html"><strong aria-hidden="true">4.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../client/go.html"><strong aria-hidden="true">4.2.</strong> GO</a></li><li class="chapter-item expanded "><a href="../../client/c#.html"><strong aria-hidden="true">4.3.</strong> C#</a></li><li class="chapter-item expanded "><a href="../../client/java.html"><strong aria-hidden="true">4.4.</strong> Java</a></li><li class="chapter-item expanded "><a href="../../client/javascript/grpc_client.html"><strong aria-hidden="true">4.5.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../client/javascript/grpc_client.html"><strong aria-hidden="true">4.5.1.</strong> gRpc 客户端</a></li><li class="chapter-item expanded "><a href="../../client/javascript/http_client.html"><strong aria-hidden="true">4.5.2.</strong> HTTP 客户端</a></li></ol></li><li class="chapter-item expanded "><a href="../../client/python.html"><strong aria-hidden="true">4.6.</strong> Python</a></li><li class="chapter-item expanded "><a href="../../client/unofficial_dgraph_clients.html"><strong aria-hidden="true">4.7.</strong> 非官方客户端</a></li><li class="chapter-item expanded "><a href="../../client/raw_http.html"><strong aria-hidden="true">4.8.</strong> 原生HTTP</a></li></ol></li><li class="chapter-item expanded "><a href="../../ratel_ui/overview.html"><strong aria-hidden="true">5.</strong> Ratel 界面</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../ratel_ui/overview.html"><strong aria-hidden="true">5.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/connection.html"><strong aria-hidden="true">5.2.</strong> 连接</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/console.html"><strong aria-hidden="true">5.3.</strong> 控制台</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/schema.html"><strong aria-hidden="true">5.4.</strong> Schema</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/cluster.html"><strong aria-hidden="true">5.5.</strong> 集群</a></li><li class="chapter-item expanded "><a href="../../ratel_ui/backups.html"><strong aria-hidden="true">5.6.</strong> 备份</a></li></ol></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/overview.html"><strong aria-hidden="true">6.</strong> 部署和管理</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../deploy_and_manage/overview.html"><strong aria-hidden="true">6.1.</strong> 预览</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/download.html"><strong aria-hidden="true">6.2.</strong> 下载</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/config.html"><strong aria-hidden="true">6.3.</strong> 配置</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/more_about_dgraph_zero.html"><strong aria-hidden="true">6.4.</strong> 关于 Dgraph Zero 的更多信息</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/more_about_dgraph_alpha.html"><strong aria-hidden="true">6.5.</strong> 关于 Dgraph Alpha 的更多信息</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/single_host_setup.html"><strong aria-hidden="true">6.6.</strong> 单机部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/multi_host_setup.html"><strong aria-hidden="true">6.7.</strong> 多机部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/using_k8s.html"><strong aria-hidden="true">6.8.</strong> 使用 K8S</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/cluster_setup.html"><strong aria-hidden="true">6.9.</strong> 集群部署</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/cluster_checklist.html"><strong aria-hidden="true">6.10.</strong> 集群部署注意事项</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/production_checklist.html"><strong aria-hidden="true">6.11.</strong> 生产环境注意事项</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/data_decryption.html"><strong aria-hidden="true">6.12.</strong> 数据加密</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/dgraph_cli_reference.html"><strong aria-hidden="true">6.13.</strong> Dgraph 命令行接口使用手册</a></li><li class="chapter-item expanded "><a href="../../deploy_and_manage/troubleshooting.html"><strong aria-hidden="true">6.14.</strong> 问题解决</a></li></ol></li><li class="chapter-item expanded "><a href="../../enterprise_features/access_control_lists.html"><strong aria-hidden="true">7.</strong> 付费版特性</a></li><li class="chapter-item expanded "><a href="../../migration/loading_csv_data.html"><strong aria-hidden="true">8.</strong> 数据迁移</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../migration/loading_csv_data.html"><strong aria-hidden="true">8.1.</strong> 加载CSV数据</a></li></ol></li><li class="chapter-item expanded "><a href="../../FAQ.html"><strong aria-hidden="true">9.</strong> 常见问题和解决方案</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/retrieving_debug_information.html"><strong aria-hidden="true">10.</strong> 最佳实践</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../how_to_guides/retrieving_debug_information.html"><strong aria-hidden="true">10.1.</strong> 检索调试信息</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/shell_completion.html"><strong aria-hidden="true">10.2.</strong> 命令行补全</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_debug_tool.html"><strong aria-hidden="true">10.3.</strong> 使用调试工具</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_dgraph_sentry_integration.html"><strong aria-hidden="true">10.4.</strong> 使用 Dgraph Sentry 集成</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/using_the_increment_tool.html"><strong aria-hidden="true">10.5.</strong> 使用增量工具</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/giving_nodes_a_type.html"><strong aria-hidden="true">10.6.</strong> 设置一个node的类型</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/load_balancing_queries_with_nginx.html"><strong aria-hidden="true">10.7.</strong> 使用 nginx 做查询负载均衡</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/a_simple_login_system.html"><strong aria-hidden="true">10.8.</strong> 一个简单的登录系统</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/upserts.html"><strong aria-hidden="true">10.9.</strong> 插入</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/run_jepsen_tests.html"><strong aria-hidden="true">10.10.</strong> 运行 Jepsen 测试</a></li><li class="chapter-item expanded "><a href="../../how_to_guides/concurrent_mutations_and_conflicts.html"><strong aria-hidden="true">10.11.</strong> 并行变更和冲突</a></li></ol></li><li class="chapter-item expanded "><a href="../../design_concepts/concepts.html"><strong aria-hidden="true">11.</strong> 设计原则</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../design_concepts/concepts.html"><strong aria-hidden="true">11.1.</strong> 原则</a></li></ol></li><li class="chapter-item expanded "><a href="../../releases.html"><strong aria-hidden="true">12.</strong> 版本更新</a></li><li class="chapter-item expanded "><a href="../../tutorials.html"><strong aria-hidden="true">13.</strong> 手册总览</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Dgraph中文文档</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="函数"><a class="header" href="#函数">函数</a></h1>
+<p>函数允许基于节点或变量的属性进行筛选。函数可以应用于根查询或过滤器中。</p>
+<blockquote>
+<p>Dgraph v1.2.0添加了对非索引谓词上的过滤器的支持。</p>
+</blockquote>
+<p>根查询(又名<code>func:</code>)中的比较函数(<code>eq</code>, <code>ge</code>, <code>gt</code>, <code>le</code>, <code>lt</code>)只能应用于索引谓词。从<code>v1.2</code>开始，现在可以在<code>@filter</code>指令上使用比较函数，甚至可以在没有索引的谓词上使用比较函数。对于大型数据集，在非索引谓词上进行筛选可能会很慢，因为它们需要在使用筛选器的级别上迭代所有可能的值。</p>
+<p>根查询或筛选器中的所有其他函数只能应用于索引谓词。</p>
+<p>对于字符串值谓词上的函数，如果没有给出语言首选项，则该函数将应用于所有没有语言标记的语言和字符串；如果给定了语言首选项，则该函数只应用于给定语言的字符串。</p>
+<h2 id="词匹配"><a class="header" href="#词匹配">词匹配</a></h2>
+<h3 id="allofterms"><a class="header" href="#allofterms">allofterms</a></h3>
+<p>解析示例：<code>allofterms(predicate, &quot;空 格 分开 的词 列表&quot;)</code></p>
+<p>Schema类型：<code>string</code></p>
+<p>索引要求：<code>term</code></p>
+<p>以任意顺序匹配具有所有指定项的字符串；不区分大小写。</p>
+<h4 id="用在根查询中"><a class="header" href="#用在根查询中">用在根查询中</a></h4>
+<p>查询示例：所有名称中包含词条<code>indiana</code>和<code>jones</code>的节点，以英文返回英文名称和流派：</p>
+<pre><code class="language-graphql">{
+  me(func: allofterms(name@en, &quot;jones indiana&quot;)) {
+    name@en
+    genre {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>这将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;The Adventures of Young Indiana Jones: Passion for Life&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;History&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;The Young Indiana Jones Chronicles 2&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Adventure Film&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Action Film&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;The Adventures of Young Indiana Jones: Travels with Father&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Family&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Adventure Film&quot;
+          }
+        ]
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<h4 id="用在过滤器中"><a class="header" href="#用在过滤器中">用在过滤器中</a></h4>
+<p>查询示例：史蒂芬·斯皮尔伯格所有包含印第安纳和琼斯字样的电影。<code>@filter(has(director.film))</code>删除了名字为<code>Steven Spielberg</code>但不是导演的节点————数据还包含了一部名为<code>Steven Spielberg</code>的电影中的一个角色。</p>
+<pre><code class="language-graphql">{
+  me(func: eq(name@en, &quot;Steven Spielberg&quot;)) @filter(has(director.film)) {
+    name@en
+    director.film @filter(allofterms(name@en, &quot;jones indiana&quot;))  {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;,
+        &quot;director.film&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Indiana Jones and the Temple of Doom&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Indiana Jones and the Raiders of the Lost Ark&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Indiana Jones and the Kingdom of the Crystal Skull&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Indiana Jones and the Last Crusade&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<h3 id="anyofterms"><a class="header" href="#anyofterms">anyofterms</a></h3>
+<p>解析示例：<code>anyofterms(predicate, &quot;space-separated term list&quot;)</code>
+Schema类型：<code>string</code>
+索引要求：<code>term</code></p>
+<p>以任意顺序匹配具有任何指定术语的字符串；不区分大小写。</p>
+<h4 id="用在根查询中-1"><a class="header" href="#用在根查询中-1">用在根查询中</a></h4>
+<p>查询示例:所有名称包含<code>poison</code>或<code>peacock</code>的节点。许多返回的节点都是电影，但像<code>Joan Peacock</code>这样的人也满足搜索条件，因为没有级联指令，查询就不需要类型：</p>
+<pre><code class="language-graphql">{
+  me(func:anyofterms(name@en, &quot;poison peacock&quot;)) {
+    name@en
+    genre {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;The Peacock Spring&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Drama&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;David Peacock&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Harry Peacock&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Poison Apple&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Family&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Fantasy&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Short Film&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Backstage Musical&quot;
+          }
+        ]
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<h4 id="用在过滤器中-1"><a class="header" href="#用在过滤器中-1">用在过滤器中</a></h4>
+<p>查询示例：所有史蒂文·斯皮尔伯格的战争或间谍电影。<code>@filter(has(director.film))</code>删除了名字为<code>Steven Spielberg</code>但不是导演的节点————数据还包含了一部名为<code>Steven Spielberg</code>的电影中的一个角色：</p>
+<pre><code class="language-graphql">{
+  me(func: eq(name@en, &quot;Steven Spielberg&quot;)) @filter(has(director.film)) {
+    name@en
+    director.film @filter(anyofterms(name@en, &quot;war spies&quot;))  {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;,
+        &quot;director.film&quot;: [
+          {
+            &quot;name@en&quot;: &quot;War Horse&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;War of the Worlds&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Bridge of Spies&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<h3 id="正则表达式"><a class="header" href="#正则表达式">正则表达式</a></h3>
+<p>解析示例：<code>regexp(predicate, /regular-expression/)</code> 或者不区分大小写<code>regexp(predicate, /regular-expression/i)</code>
+Schema类型：<code>string</code>
+索引要求：<code>trigram</code></p>
+<p>通过正则表达式匹配字符串。正则表达式语言是<code>go</code>正则表达式的语言。</p>
+<p>查询示例：在根节点，在名称开头匹配Steven Sp，后面跟着任意字符。对于每个这样匹配的uid，匹配包含ryan的影片。注意allofterms的不同之处，它只匹配ryan，但是正则表达式搜索也会在terms内匹配，比如bryan：</p>
+<pre><code class="language-graphql">{
+  directors(func: regexp(name@en, /^Steven Sp.*$/)) {
+    name@en
+    director.film @filter(regexp(name@en, /ryan/i)) {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;directors&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Steven Spencer&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;,
+        &quot;director.film&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Saving Private Ryan&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg And The Return To Film School&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spohn&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spieldal&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Sperling&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spencer&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spurrier&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spurrier&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<p><strong>技术细节：</strong>
+<code>Trigram</code>是由三个连续的符文组成的子串。例如，Dgraph有三元组合Dgr, gra, rap, aph。
+为了保证正则表达式匹配的效率，Dgraph使用了三元组索引。也就是说，Dgraph将正则表达式转换为trigram查询，使用trigram索引和trigram查询来查找可能的匹配，并仅对可能的匹配项应用完整的正则表达式搜索。</p>
+<h4 id="dgraph中正则表达式的高效使用和限制"><a class="header" href="#dgraph中正则表达式的高效使用和限制">Dgraph中正则表达式的高效使用和限制</a></h4>
+<p>** TODO **</p>
+<h3 id="模糊匹配"><a class="header" href="#模糊匹配">模糊匹配</a></h3>
+<p>解析规则：<code>match(predicate, string, distance)</code>
+Schema类型：<code>string</code>
+索引类型：<code>trigram</code></p>
+<p>通过计算到字符串的<a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein</a>距离来匹配谓词值，也称为模糊匹配。距离参数必须大于零(0)。使用更大的距离值可以产生更多但不太精确的结果。</p>
+<p>查询示例：在根查询处，模糊匹配节点类似于<code>Stephen</code>，距离值小于等于8：</p>
+<pre><code class="language-graphql">{
+  directors(func: match(name@en, Stephen, 8)) {
+    name@en
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;directors&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Stephen Chen&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Step Up 3D&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Bauer&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Stephen Chow&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Joseph&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Ron Steinman&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Blum&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;The Chef&quot;
+      },
+    ]
+  }
+}
+</code></pre>
+<h3 id="全文搜索"><a class="header" href="#全文搜索">全文搜索</a></h3>
+<p>解析规则：<code>alloftext(predicate, &quot;space-separated text&quot;)</code>或者<code>anyoftext(predicate, &quot;space-separated text&quot;)</code>
+Schema类型：<code>string</code>
+索引要求：<code>fulltext</code></p>
+<p>应用带有词干分析和停止词的全文本搜索，以查找与所有或任何给定文本匹配的字符串。</p>
+<p>以下步骤在索引生成和处理全文搜索参数时应用：</p>
+<ol>
+<li>标记化(根据Unicode单词边界)。</li>
+<li>转换为小写的。</li>
+<li>unicode规范化(到<a href="https://unicode.org/reports/tr15/#Norm_Forms">正规化形式KC</a>)。</li>
+<li>词干分析使用特定于语言的词干分析器(如果语言支持的话)。</li>
+<li>停止单词删除(如果语言支持)。</li>
+</ol>
+<p><code>Dgraph</code>使用<a href="https://github.com/blevesearch/bleve">bleve</a>进行全文搜索索引。请参阅bleve语言特定的<a href="https://github.com/blevesearch/bleve/tree/master/analysis/lang">停止单词列表</a>。</p>
+<p>下表包含所有支持的语言，相应的国家代码，词干和停止词过滤支持：</p>
+<blockquote>
+<p>todo</p>
+</blockquote>
+<p>查询示例：所有包含<code>dog</code>, <code>dogs</code>, <code>bark</code>, <code>bark</code>, <code>bark</code>等的名称。停止字删除消除和<code>which</code>：</p>
+<pre><code class="language-graphql">{
+  movie(func:alloftext(name@en, &quot;the dog which barks&quot;)) {
+    name@en
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;movie&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Black Dogs Barking&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Elliott Erwitt: 'I Bark at Dogs&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Barking Dogs&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Barking Dogs Never Bite&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Do You Hear the Dogs Barking?&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;But The Word Dog Doesn’t Bark&quot;
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<h3 id="等于"><a class="header" href="#等于">等于</a></h3>
+<p>解析示例：</p>
+<ul>
+<li><code>eq(predicate, value)</code></li>
+<li><code>eq(val(varName), value)</code></li>
+<li><code>eq(predicate, val(varName))</code></li>
+<li><code>eq(count(predicate), value)</code></li>
+<li><code>eq(predicate, [val1, val2, val3])</code></li>
+<li><code>eq(predicate, [$var1, &quot;value2&quot;, ..., $varN])</code></li>
+</ul>
+<p>Schema类型：<code>int</code>, <code>float</code>, <code>bool</code>, <code>string</code>, <code>dateTime</code>
+索引要求：在查询根处使用<code>eq(predicate, ...)</code>形式时需要索引(见下表)。对于查询根的<code>count</code>(谓词)，需要<code>@count</code>索引。对于变量，值是作为查询的一部分计算的，因此不需要索引：</p>
+<table><thead><tr><th>类型</th><th>索引要求</th></tr></thead><tbody>
+<tr><td>int</td><td>int</td></tr>
+<tr><td>float</td><td>float</td></tr>
+<tr><td>bool</td><td>bool</td></tr>
+<tr><td>string</td><td>exact hash term fulltext</td></tr>
+<tr><td>dateTime</td><td>dateTime</td></tr>
+<tr><td>布尔常量分别为<code>true</code>和<code>false</code>，因此使用<code>eq</code>时，就变成了，例如，<code>eq(boolPred, true)</code>。</td><td></td></tr>
+</tbody></table>
+<p>查询示例：查询具有十三种流派的电影，并返回十三种流派的名字：</p>
+<pre><code class="language-graphql">{
+  me(func: eq(count(genre), 13)) {
+    name@en
+    genre {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Stay Tuned&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Horror&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Science Fiction&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Thriller&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Family&quot;
+          }
+          ...
+        ]
+      },
+       {
+        &quot;name@en&quot;: &quot;Trollhunters&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Horror&quot;
+          },
+        ]
+       }
+       ...
+    ]
+  }
+}
+</code></pre>
+<p>查询示例：导演叫史蒂文，他曾经导演过1、2或3部电影：</p>
+<pre><code class="language-graphql">{
+  steve as var(func: allofterms(name@en, &quot;Steven&quot;)) {
+    films as count(director.film)
+  }
+  stevens(func: uid(steve)) @filter(eq(val(films), [1,2,3])) {
+    name@en
+    numFilms: val(films)
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;stevens&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Steven Wilsey&quot;,
+        &quot;numFilms&quot;: 1
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Bratter&quot;,
+        &quot;numFilms&quot;: 1
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Saussey&quot;,
+        &quot;numFilms&quot;: 1
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Ray Morris&quot;,
+        &quot;numFilms&quot;: 1
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<h3 id="小于小于或等于大于大于或等于"><a class="header" href="#小于小于或等于大于大于或等于">小于、小于或等于、大于、大于或等于</a></h3>
+<p>解析示例：(假设不等号是<code>IE</code>)</p>
+<ul>
+<li>IE(predicate, value)</li>
+<li>IE(val(varName), value)</li>
+<li>IE(predicate, val(varName))</li>
+<li>IE(count(predicate), value)</li>
+</ul>
+<p><code>IE</code>的可能取值：</p>
+<ul>
+<li><code>le</code>: 小于或等于(less than or equal to)</li>
+<li><code>lt</code>: 小于(less than)</li>
+<li><code>ge</code>: 大于或等于(greater than or equal to)</li>
+<li><code>gt</code>: 大于(greater than)</li>
+</ul>
+<p>Schema类型：<code>int</code>, <code>float</code>, <code>string</code>, <code>dateTime</code></p>
+<p>索引要求：当不等式查询<code>IE</code>用在根查询时，需要下表的索引要求。对于用在根查询的<code>count(predicate)</code>，则需要<code>@count</code>索引。对于变量，因为变量是在查询中计算的一部分，所以不需要索引。
+类型|索引要求
+---| ---
+int|int
+float| float
+string|string
+dateTime|dateTime</p>
+<p>查询示例：列举<code>Ridley Scott</code>在1980年之前导演的电影：</p>
+<pre><code class="language-graphql">{
+  me(func: eq(name@en, &quot;Ridley Scott&quot;)) {
+    name@en
+    director.film @filter(lt(initial_release_date, &quot;1980-01-01&quot;))  {
+      initial_release_date
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Ridley Scott&quot;,
+        &quot;director.film&quot;: [
+          {
+            &quot;initial_release_date&quot;: &quot;1979-05-25T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;Alien&quot;
+          },
+          {
+            &quot;initial_release_date&quot;: &quot;1977-12-01T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;The Duellists&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Ridley Scott&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<p>查询示例：以史蒂文为导演的同名电影，曾执导过100多名演员。</p>
+<pre><code class="language-graphql">{
+  ID as var(func: allofterms(name@en, &quot;Steven&quot;)) {
+    director.film {
+      num_actors as count(starring)
+    }
+    total as sum(val(num_actors))
+  }
+
+  dirs(func: uid(ID)) @filter(gt(val(total), 100)) {
+    name@en
+    total_actors : val(total)
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;dirs&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Steven Conrad&quot;,
+        &quot;total_actors&quot;: 122
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Knight&quot;,
+        &quot;total_actors&quot;: 102
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Zaillian&quot;,
+        &quot;total_actors&quot;: 123
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;,
+        &quot;total_actors&quot;: 1665
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Brill&quot;,
+        &quot;total_actors&quot;: 417
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<p>查询示例：每类电影超过30000部的电影。因为在类型上没有指定顺序，所以顺序将通过UID。<code>count</code>索引记录节点的边数，并使这样的查询更多：</p>
+<pre><code class="language-graphql">{
+  genre(func: gt(count(~genre), 30000)){
+    name@en
+    ~genre (first:1) {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;genre&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Documentary film&quot;,
+        &quot;~genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Wild Things&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Drama&quot;,
+        &quot;~genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;José María y María José: Una pareja de hoy&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Comedy&quot;,
+        &quot;~genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;José María y María José: Una pareja de hoy&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Short Film&quot;,
+        &quot;~genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Side Effects&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<p>查询示例：叫<code>Steven</code>的导演和他们的电影<code>initial_release_date</code>大于电影<code>Minority Report</code>的电影：</p>
+<pre><code class="language-graphql">{
+  var(func: eq(name@en,&quot;Minority Report&quot;)) {
+    d as initial_release_date
+  }
+  me(func: eq(name@en, &quot;Steven Spielberg&quot;)) {
+    name@en
+    director.film @filter(ge(initial_release_date, val(d))) {
+      initial_release_date
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;,
+        &quot;director.film&quot;: [
+          {
+            &quot;initial_release_date&quot;: &quot;2012-10-08T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;Lincoln&quot;
+          },
+          {
+            &quot;initial_release_date&quot;: &quot;2011-12-04T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;War Horse&quot;
+          },
+          {
+            &quot;initial_release_date&quot;: &quot;2005-06-13T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;War of the Worlds&quot;
+          },
+          {
+            &quot;initial_release_date&quot;: &quot;2002-06-17T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;Minority Report&quot;
+          }
+          ...
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Steven Spielberg&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<h3 id="between"><a class="header" href="#between">between</a></h3>
+<p>解析规则：<code>between(predicate, startDateValue, endDateValue)</code>
+Schema类型：<code>Scalar Type</code>, <code>dateTime</code>, <code>int</code>, <code>float</code>, <code>string</code>
+索引要求：<code>dateTime</code>, <code>int</code>, <code>float</code>, <code>exact</code></p>
+<p>返回与索引值的包含范围相匹配的节点。<code>between</code>关键字对索引执行范围检查，以提高查询效率，有助于防止对大数据集进行大范围查询时运行缓慢。</p>
+<p><code>between</code>关键字的一个常见用例是在由<code>dateTime</code>索引的数据集中进行搜索。下面的示例查询演示了这个用例。</p>
+<p>查询示例：1977年首次上映的电影，按类型列出：</p>
+<pre><code class="language-graphql">{
+  me(func: between(initial_release_date, &quot;1977-01-01&quot;, &quot;1977-12-31&quot;)) {
+    name@en
+    genre {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;SST: Death Flight&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Drama&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Lucio Flavio&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;Crime Fiction&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Drama&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Uyarnthavargal&quot;,
+        &quot;genre&quot;: [
+          {
+            &quot;name@en&quot;: &quot;World cinema&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Drama&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Musical Drama&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Backstage Musical&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Tamil cinema&quot;
+          }
+        ]
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<h3 id="uid"><a class="header" href="#uid">uid</a></h3>
+<p>解析示例：</p>
+<ul>
+<li><code>q(func:uid(&lt;uid&gt;))</code></li>
+<li><code>predicate @filter(uid(&lt;uid1&gt;, ..., &lt;uidn&gt;))</code></li>
+<li><code>predicate @filter(uid(a))</code> 对变量<code>a</code>使用</li>
+<li><code>q(func:uid(a, b))</code> 对变量<code>a</code>和<code>b</code>使用</li>
+<li><code>q(func:uid($uids))</code> 对一组uid使用，例如<code>[0x1, 0x2, 0x3, ..., 0xn]</code></li>
+</ul>
+<p>仅将当前查询级别的节点过滤为给定<code>uid</code>集合中的节点。</p>
+<p>对于查询变量<code>a</code>, <code>uid(a)</code>表示存储在<code>a</code>中的<code>uid</code>集合，对于值变量<code>b</code>, <code>uid(b)</code>表示<code>uid</code>到<code>value</code>映射的<code>uid</code>集合。对于两个或多个变量，<code>uid(a,b，…)</code>表示所有变量的并集。</p>
+<p><code>uid(&lt;uid&gt;)</code>与标识函数一样，即使节点没有任何边，也将返回所请求的<code>uid</code>。</p>
+<p>查询示例：按已知<code>UID</code>查询<code>Priyanka Chopra</code>的胶片：</p>
+<pre><code class="language-graphql">{
+  films(func: uid(0x2c964)) {
+    name@hi
+    actor.film {
+      performance.film {
+        name@hi
+      }
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;films&quot;: [
+      {
+        &quot;name@hi&quot;: &quot;प्रियंका चोपड़ा&quot;,
+        &quot;actor.film&quot;: [
+          {
+            &quot;performance.film&quot;: [
+              {
+                &quot;name@hi&quot;: &quot;यकीन&quot;
+              }
+            ]
+          },
+          {
+            &quot;performance.film&quot;: [
+              {
+                &quot;name@hi&quot;: &quot;सलाम-ए-इश्क़&quot;
+              }
+            ]
+          }
+          ...
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<p>查询示例：塔拉吉·汉森的电影按类型分类：</p>
+<pre><code class="language-graphql">{
+  var(func: allofterms(name@en, &quot;Taraji Henson&quot;)) {
+    actor.film {
+      F as performance.film {
+        G as genre
+      }
+    }
+  }
+
+  Taraji_films_by_genre(func: uid(G)) {
+    genre_name : name@en
+    films : ~genre @filter(uid(F)) {
+      film_name : name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;Taraji_films_by_genre&quot;: [
+      {
+        &quot;genre_name&quot;: &quot;War film&quot;,
+        &quot;films&quot;: [
+          {
+            &quot;film_name&quot;: &quot;Talk to Me&quot;
+          }
+        ]
+      },
+      {
+        &quot;genre_name&quot;: &quot;Horror&quot;,
+        &quot;films&quot;: [
+          {
+            &quot;film_name&quot;: &quot;Satan's School for Girls&quot;
+          }
+        ]
+      },
+      {
+        &quot;genre_name&quot;: &quot;Indie film&quot;,
+        &quot;films&quot;: [
+          {
+            &quot;film_name&quot;: &quot;Once Fallen&quot;
+          },
+          {
+            &quot;film_name&quot;: &quot;Peep World&quot;
+          },
+          {
+            &quot;film_name&quot;: &quot;Hustle &amp; Flow&quot;
+          },
+          {
+            &quot;film_name&quot;: &quot;All or Nothing&quot;
+          },
+          {
+            &quot;film_name&quot;: &quot;Hair Show&quot;
+          }
+        ]
+      },
+      {
+        &quot;genre_name&quot;: &quot;Crime&quot;,
+        &quot;films&quot;: [
+          {
+            &quot;film_name&quot;: &quot;Term Life&quot;
+          }
+        ]
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<p>查询示例：<code>Taraji Henson</code>的电影按体裁数量排序，体裁列表按<code>Taraji</code>在每个体裁中制作的电影数量排序：</p>
+<pre><code class="language-graphql">{
+  var(func: allofterms(name@en, &quot;Taraji Henson&quot;)) {
+    actor.film {
+      F as performance.film {
+        G as count(genre)
+        genre {
+          C as count(~genre @filter(uid(F)))
+        }
+      }
+    }
+  }
+  Taraji_films_by_genre_count(func: uid(G), orderdesc: val(G)) {
+    film_name : name@en
+    genres : genre (orderdesc: val(C)) {
+      genre_name : name@en
+    }
+  }
+}
+
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;Taraji_films_by_genre_count&quot;: [
+      {
+        &quot;film_name&quot;: &quot;Date Night&quot;,
+        &quot;genres&quot;: [
+          {
+            &quot;genre_name&quot;: &quot;Comedy&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Crime Fiction&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Romance Film&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Thriller&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Action Film&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Romantic comedy&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Action/Adventure&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Action Comedy&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Chase Movie&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Screwball comedy&quot;
+          }
+        ]
+      },
+      {
+        &quot;film_name&quot;: &quot;I Can Do Bad All by Myself&quot;,
+        &quot;genres&quot;: [
+          {
+            &quot;genre_name&quot;: &quot;Drama&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Comedy&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Romance Film&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Romantic comedy&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Comedy-drama&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Musical Drama&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Backstage Musical&quot;
+          },
+          {
+            &quot;genre_name&quot;: &quot;Musical comedy&quot;
+          }
+        ]
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<h3 id="uid_in"><a class="header" href="#uid_in">uid_in</a></h3>
+<p>解析示例：</p>
+<ul>
+<li><code>q(func: ...) @filter(uid_in(predicate, &lt;uid&gt;))</code></li>
+<li><code>predicate1 @filter(uid_in(predicate2, &lt;uid&gt;))</code></li>
+<li><code>predicate1 @filter(uid_in(predicate2, [&lt;uid1&gt;, ..., &lt;uid2&gt;]))</code></li>
+<li><code>predicate1 @filter(uid_in(predicate2, uid(myVariable)))</code>
+Schema类型：UID
+索引要求：无</li>
+</ul>
+<p>虽然<code>uid</code>函数基于<code>uid</code>在当前级别上过滤节点，但<code>uid_in</code>函数允许沿着边缘向前查找，以检查它是否指向特定的<code>uid</code>。这通常可以节省额外的查询块，并避免返回边缘。</p>
+<p><code>uid_in</code>不能在根查询下使用。它接受多个<code>UID</code>作为它的参数，并接受一个<code>UID</code>变量(它可以包含<code>UID</code>的映射)。</p>
+<p>查询示例：<code>Marc Caro</code>和<code>Jean-Pierre Jeunet</code>的协作关系<code>(UID 0x99706)</code>。如果<code>Jean-Pierre Jeunet</code>的<code>UID</code>是已知的，那么以这种方式查询就不需要用一个块将他的<code>UID</code>提取到一个变量中，也不需要对<code>~director.film</code>进行额外的边遍历和过滤器：</p>
+<pre><code class="language-graphql">{
+  caro(func: eq(name@en, &quot;Marc Caro&quot;)) {
+    name@en
+    director.film @filter(uid_in(~director.film, 0x99706)) {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;caro&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Marc Caro&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<p>如果不知道<code>Jean-Pierre Jeunet</code>的<code>UID</code>，还可以查询他的<code>UID</code>，并在<code>UID</code>变量中使用它：</p>
+<pre><code class="language-graphql">{
+  getJeunet as q(func: eq(name@fr, &quot;Jean-Pierre Jeunet&quot;))
+
+  caro(func: eq(name@en, &quot;Marc Caro&quot;)) {
+    name@en
+    director.film @filter(uid_in(~director.film, uid(getJeunet) )) {
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;q&quot;: [],
+    &quot;caro&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Marc Caro&quot;,
+        &quot;director.film&quot;: [
+          {
+            &quot;name@en&quot;: &quot;The City of Lost Children&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;Delicatessen&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;The Bunker of the Last Gunshots&quot;
+          },
+          {
+            &quot;name@en&quot;: &quot;L'évasion&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<h3 id="has"><a class="header" href="#has">has</a></h3>
+<p>解析规则：<code>has(predicate)</code></p>
+<p>Schema使用类型：所有</p>
+<p>确定节点是否具有特定谓词。</p>
+<p>查询示例：前五位导演和他们所有的电影都有一个上映日期记录。导演已经指导了至少一个电影————等效语义<code>gt(count(director.film), 0)</code>：</p>
+<pre><code class="language-graphql">{
+  me(func: has(director.film), first: 5) {
+    name@en
+    director.film @filter(has(initial_release_date))  {
+      initial_release_date
+      name@en
+    }
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;me&quot;: [
+      {
+        &quot;name@en&quot;: &quot;Zehra Yiğit&quot;
+      },
+      {
+        &quot;name@en&quot;: &quot;Charlton Heston&quot;,
+        &quot;director.film&quot;: [
+          {
+            &quot;initial_release_date&quot;: &quot;1982-09-23T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;Mother Lode&quot;
+          },
+          {
+            &quot;initial_release_date&quot;: &quot;1972-03-02T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;Antony and Cleopatra&quot;
+          },
+          {
+            &quot;initial_release_date&quot;: &quot;1988-12-21T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;A Man for All Seasons&quot;
+          }
+        ]
+      },
+      {
+        &quot;name@en&quot;: &quot;Rajeev Sharma&quot;,
+        &quot;director.film&quot;: [
+          {
+            &quot;initial_release_date&quot;: &quot;2012-01-01T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;Nabar&quot;
+          },
+          {
+            &quot;initial_release_date&quot;: &quot;2014-05-30T00:00:00Z&quot;,
+            &quot;name@en&quot;: &quot;47 to 84&quot;
+          }
+        ]
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<h3 id="geolocation-地理位置"><a class="header" href="#geolocation-地理位置">Geolocation 地理位置</a></h3>
+<h4 id="变更"><a class="header" href="#变更">变更</a></h4>
+<p>要使用geo函数，您需要谓词上的索引。</p>
+<pre><code class="language-schema">loc: geo @index(geo) .
+</code></pre>
+<p>下面是如何添加一个点：</p>
+<pre><code class="language-dql">{
+  set {
+    &lt;_:0xeb1dde9c&gt; &lt;loc&gt; &quot;{'type':'Point','coordinates':[-122.4220186,37.772318]}&quot;^^&lt;geo:geojson&gt; .
+    &lt;_:0xeb1dde9c&gt; &lt;name&gt; &quot;Hamon Tower&quot; .
+    &lt;_:0xeb1dde9c&gt; &lt;dgraph.type&gt; &quot;Location&quot; .
+  }
+}
+</code></pre>
+<p>下面是如何将一个多边形与一个节点关联。添加多多边形也是类似的：</p>
+<pre><code class="language-dql">{
+  set {
+    &lt;_:0xf76c276b&gt; &lt;loc&gt; &quot;{'type':'Polygon','coordinates':[[[-122.409869,37.7785442],[-122.4097444,37.7786443],[-122.4097544,37.7786521],[-122.4096334,37.7787494],[-122.4096233,37.7787416],[-122.4094004,37.7789207],[-122.4095818,37.7790617],[-122.4097883,37.7792189],[-122.4102599,37.7788413],[-122.409869,37.7785442]],[[-122.4097357,37.7787848],[-122.4098499,37.778693],[-122.4099025,37.7787339],[-122.4097882,37.7788257],[-122.4097357,37.7787848]]]}&quot;^^&lt;geo:geojson&gt; .
+    &lt;_:0xf76c276b&gt; &lt;name&gt; &quot;Best Western Americana Hotel&quot; .
+    &lt;_:0xf76c276b&gt; &lt;dgraph.type&gt; &quot;Location&quot; .
+  }
+}
+</code></pre>
+<p>以上的例子是从我们的<a href="https://github.com/dgraph-io/benchmarks/blob/master/data/sf.tourism.gz?raw=true">SF旅游数据集</a>中挑选出来的。</p>
+<h4 id="查询"><a class="header" href="#查询">查询</a></h4>
+<p><strong>near 附近查询</strong></p>
+<p>解析示例：<code>near(predicate, [long, lat], distance)</code></p>
+<p>Schema类型：<code>geo</code></p>
+<p>索引要求：<code>geo</code></p>
+<p>匹配所有由谓词给出的位置在距离geojson坐标<code>[long, lat]</code>米范围内的实体。</p>
+<p>查询示例：旧金山金门公园某点1000米(1公里)以内的旅游目的地：</p>
+<pre><code class="language-graphql">{
+  tourist(func: near(loc, [-122.469829, 37.771935], 1000) ) {
+    name
+  }
+}
+</code></pre>
+<p>将返回：</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;tourist&quot;: [
+      {
+        &quot;name&quot;: &quot;Peace Lantern&quot;
+      },
+      {
+        &quot;name&quot;: &quot;De Young Museum&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Buddha&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Morrison Planetarium&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Chinese Pavillion&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Strawberry Hill&quot;
+      }
+      ...
+    ]
+  }
+}
+</code></pre>
+<p><strong>within 在给定范围之内</strong></p>
+<p><strong>contains 包含</strong></p>
+<p><strong>intersects 相交</strong></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../dql/query_language/dql_fundamentals.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../dql/query_language/connecting_filters.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../dql/query_language/dql_fundamentals.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../dql/query_language/connecting_filters.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://0.0.0.0:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
