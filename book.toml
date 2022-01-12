@@ -1,0 +1,6 @@
+[book]
+authors = ["famouscat8"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Dgraph中文文档"
