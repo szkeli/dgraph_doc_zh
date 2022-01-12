@@ -244,17 +244,17 @@ email: string @index(exact) @noconflict .
 
 ### Password 类型
 
-通过将属性的模式设置为`password`类型来设置实体的密码。不能直接查询密码，只能通过`checkpwd`函数进行匹配检查。密码使用`bcrypt`加密。
+通过将属性的模式设置为`password`类型来设置实体的密码。不能直接查询密码，只能通过`checkpwd`函数测试密码。密码使用`bcrypt`加密。
 
-例如：设置密码，首先设置`schema`，然后设置密码：
+例如：首先设置`schema`，然后在设置实体的密码：
 
 ``` schema
 pass: password .
 ```
 
-使用变更设置密码：
+使用变更设置实体的密码：
 
-``` graphql
+``` dql
 {
   set {
     <0x123> <name> "Password Example" .
@@ -265,7 +265,7 @@ pass: password .
 
 测试密码是否正确：
 
-``` graphql
+``` dql
 {
   check(func: uid(0x123)) {
     name
@@ -291,7 +291,7 @@ pass: password .
 
 在`checkpwd`函数上使用别名：
 
-``` graphql
+``` dql
 {
   check(func: uid(0x123)) {
     name
@@ -317,15 +317,15 @@ pass: password .
 
 ### Indexing 索引
 
-> 在一个 predicate 上使用函数需要指定索引
+> 在一个 predicate 上使用[函数](./functions.md)需要指定索引
 
-当通过应用函数进行筛选时，`Dgraph`使用索引来高效地搜索可能较大的数据集。
+当通过应用函数进行过滤时，`Dgraph`使用索引来高效地搜索数据集。
 
-所有标量类型都可以被索引。
+所有标量类型（`scalar type`）都可以被索引。
 
-类型`int`, `float`, `bool`和`geo`都只有一个默认索引：带有命名为`int`, `float`, `bool`和`geo`的标记器。
+类型`int`, `float`, `bool`和`geo`都只有一个默认索引：带有命名为`int`, `float`, `bool`和`geo`的`tokenizer`。
 
-类型`string`和`dateTime`有许多索引。
+类型`string`和`dateTime`有一系列的索引。
 
 
 #### String Indices
@@ -335,9 +335,9 @@ pass: password .
 `Dgraph`函数|需要的索引或`tokenizer`|标注
 ----|----|---
 `eq`|`hash` `exact` `term` `fulltext`|eq的最佳性能指标是哈希值。只有在您还需要术语或全文搜索时才使用`term`或`fulltext`。如果您已经在使用`term`，那么也不需要使用`hash`或`exact`。
-`le` `ge` `lt` `gt` | `exact` |允许更快地查询
-`allofterms` `amyofterms`| `term`|允许在一个句子中使用短语查询
-`alloftext` `anyoftext`| `fulltext` | 匹配特定语言的词干和停止词。
+`le`, `ge`, `lt`, `gt` | `exact` |允许更快地查询
+`allofterms`, `amyofterms`| `term`|允许在一个句子中使用短语查询
+`alloftext`, `anyoftext`| `fulltext` | 匹配特定语言的词干和停止词。
 `regexp`| `trigram`|正则表达式匹配。也可用于相等检查。
 
 > 错误的索引选择可能会导致性能损失和增加事务冲突率。只使用应用程序需要的最小数量和最简单的索引。
@@ -383,7 +383,7 @@ pass: password .
 
 对于具有`@count` 的`predicate`，将每个节点的边数索引为索引。这样可以快速查询表单：
 
-``` graphql
+``` dql
 {
   q(func: gt(count(pred), threshold)) {
     ...
@@ -394,7 +394,7 @@ pass: password .
 
 ### List 类型
 
-如果在Schema中指定，变量类型的`predicate`也可以存储值的`list`。标量类型需要包含在`[]`中，以表明它是一个`list`类型。
+`predicate`支持存储一个`list`，但需要在`schema`中指定。标量类型需要包含在`[]`中，以表明它是一个`list`类型。
 
 ``` schema 
 occupations: [string] .
@@ -404,8 +404,8 @@ score: [int] .
 * `set`操作添加到值列表中。存储值的顺序是不确定的。
 * `delete`操作从列表中删除值。
 * 查询这些谓词将返回数组中的列表。
-* 索引可以应用于具有列表类型的谓词，并且可以对其使用函数。
-* 不允许使用这些谓词进行排序。
+* 索引可以应用于具有列表类型的谓词，并且可以对其使用[函数](./functions.md)。
+* 不允许使用这些`predicate`进行排序。
 * 这些列表就像一个无序的集合。例如：["e1"， "e1"， "e2"]可能会被存储为["e2"， "e1"]，也就是说，重复的值将不会被存储，顺序也不会被保留。
 
 #### 在List中使用过滤函数
@@ -414,22 +414,24 @@ score: [int] .
 
 例如，查询或父边的`@filter(eq(occupation，"Teacher"))`将显示数组中每个节点的列表中的所有职业，但只包含将`Teacher`作为职业之一的节点。但是，不支持值边过滤。
 
-### 反转一条边
+### 反向边
 
-图的边是单向的。对于节点-节点边，有时建模需要反向边。如果只有一些主-谓词-对象三元组有反向，则必须手动添加它们。但是如果一个谓词总是有反向，如果在模式中指定了`@reverse`，则`Dgraph`会计算反向边。
+图的边是单向的，但有时建模需要反向边。如果只有一些`subject-predicate-object`三元组有反向，则必须手动添加它们。但是如果一个谓词总是有反向，如果在`schema`中指定了`@reverse`，则`Dgraph`会计算该`predicate`的所有反向边。
 
 `anEdge`的反向边是`~anEdge`。
 
-对于现有数据，`Dgraph`计算所有反向边。对于schema变更后添加的数据，`Dgraph`计算并存储每个添加的三元组的反向边。
+对于现有数据，`Dgraph`计算所有反向边。对于`schema`变更后添加的数据，`Dgraph`计算并存储每个添加的三元组的反向边。
 
 ``` schema
 type Person {
   name string
 }
+
 type Car {
   regnbr string
   owner Person
 }
+
 owner uid @reverse .
 regnbr string @index(exact) .
 name string @index(exact) .
@@ -437,16 +439,16 @@ name string @index(exact) .
 
 这使得查询`person`和他们的车成为可能：
 
-``` graphql
+``` dql
 q(func type(Person)) {
   name
   ~owner { name }
 }
 ```
 
-为了在结果中得到一个不同于`~owner`的键，可以用想要的标签(在本例中是`cars`)来编写查询：
+为了在结果中得到一个不同于`~owner`的键，可以用想要的标签（在本例中是`cars`）来编写查询：
 
-``` graphql
+``` dql
 q(func type(Person)) {
   name
   cars: ~owner { name }
@@ -457,7 +459,6 @@ q(func type(Person)) {
 
 ``` schema
 owner [uid] @reverse .
-
 ```
 
 在这两种情况下，`owner`边都应该设置在`Car`上：
@@ -470,7 +471,6 @@ _:c1 <dgraph.type> "Car" .
 _:c1 <owner> _:p1
 ```
 
-
 ### 查询 Schema
 
 你可以使用下面的`DQL`语句查询整个`Schema`： 
@@ -479,10 +479,9 @@ _:c1 <owner> _:p1
 schema {}
 ```
 
-> 注意：与常规查询不同，模式查询没有被花括号包围。此外，模式查询和常规查询不能一起使用。
+> 注意：与常规查询不同，`schema`查询没有被花括号包围。此外，`schema`查询和常规查询不能一起使用。
 
-
-您可以在查询体中查询特定的模式字段：
+您可以在查询体中查询特定的`schema`字段：
 
 ``` dql
 schema {
@@ -497,7 +496,7 @@ schema {
 }
 ```
 
-你也可以查询特定的谓词：
+你也可以查询特定的`predicate`：
 
 ``` dql
 schema(pred: [name, friend]) {
@@ -512,7 +511,7 @@ schema(pred: [name, friend]) {
 }
 ```
 
-> 注意，如果启用了ACL，那么模式查询只返回登录的ACL用户具有读访问权限的谓词。
+> 注意，如果启用了ACL，那么`schema`查询只返回登录的ACL用户具有读访问权限的`predicate`。
 
 类型也可以查询。下面是一些示例查询：
 
@@ -520,7 +519,6 @@ schema(pred: [name, friend]) {
 schema(type: Movie) {}
 schema(type: [Person, Animal]) {}
 ```
-
 
 注意，类型查询不包含花括号之间的任何内容。输出将是请求类型的完整定义。
 
