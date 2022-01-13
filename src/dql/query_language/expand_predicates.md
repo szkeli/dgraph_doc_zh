@@ -1,14 +1,14 @@
 # Expand 函数
 
-可以使用`expand()`函数在节点外展开谓词。要使用`expand()`，类型系统是必需的。请参阅关于类型系统的一节，以检查如何设置类型节点。本节的其余部分假设您熟悉该节。
+可以使用`expand()`函数在节点外展开谓词。想要使用`expand()`，类型系统是必需的。请参阅关于[类型系统](./type_system.md)的一节，以检查如何设置类型节点。本节的其余部分假设您熟悉该节。
 
 使用`expand`函数有两种方法。
 
 可以将类型传递给`expand()`以展开该类型中的所有谓词。
 
-查询示例：列出哈利波特系列的电影：
+查询示例：列出`Harry Potter`的电影：
 
-``` graphql
+``` dql
 {
   all(func: eq(name@en, "Harry Potter")) @filter(type(Series)) {
     name@en
@@ -91,26 +91,27 @@
 ```
 
 如果`_all_`作为参数传递给`expand()`，则要展开的谓词将是分配给给定节点的类型中的字段的联合。
+
 `_all_`关键字要求节点具有类型。`Dgraph`将查找已分配给节点的所有类型，查询类型以检查它们具有哪些属性，并使用这些属性计算要展开的谓词列表。
 
 例如，考虑一个具有`Animal`和`Pet`类型的节点，它们有以下定义：
 
 ``` dql
 type Animal {
-    name
-    species
-    dob
+  name
+  species
+  dob
 }
 
 type Pet {
-    owner
-    veterinarian
+  owner
+  veterinarian
 }
 ```
 
 当在这个节点上调用`expand(_all_)`时，`Dgraph`首先检查节点的类型`Animal`和`Pet`。然后，它将获得`Animal`和`Pet`的定义，并根据它们的类型定义构建谓词列表。
 
-``` graphql
+``` dql
 name
 species
 dob

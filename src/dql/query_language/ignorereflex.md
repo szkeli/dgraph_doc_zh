@@ -4,7 +4,7 @@
 
 查询示例：`Rutger Hauer`的所有合作者。如果没有`@ignorereflex`，结果也会包括`Rutger Hauer`每一部电影：
 
-``` graphql
+``` dql
 {
   coactors(func: eq(name@en, "Rutger Hauer")) @ignorereflex {
     actor.film {

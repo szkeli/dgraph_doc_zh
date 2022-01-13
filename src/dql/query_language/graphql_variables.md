@@ -1,13 +1,13 @@
 # GraphQL 变量
 
-解析规则(使用默认值)：
+语法示例（使用默认值）：
 
 * `query title($name: string = "Bauman") { ... }`
 * `query title($age: int = "95") { ... }`
 * `query title($uids: string = "0x1") { ... }`
 * `query title($uids: string = "[0x1, 0x2, 0x3]") { ... }`
 
-可以在查询中定义和使用变量，这有助于查询重用，并通过传递单独的变量映射，避免运行时在客户端中构建代价高昂的字符串。变量以$符号开头。对于带有GraphQL变量的HTTP请求，我们必须使用`Content-Type: application/json`头，并通过包含查询和变量的json对象传递数据：
+可以在查询中定义和使用变量，这有助于查询重用，并通过传递单独的变量映射，避免运行时在客户端中构建代价高昂的字符串。变量以$符号开头。对于带有`GraphQL`变量的`HTTP`请求，我们必须使用`Content-Type: application/json`头，并通过包含查询和变量的`json`对象传递数据：
 
 ``` bash 
 curl -H "Content-Type: application/json" localhost:8080/query -XPOST -d $'{
@@ -121,7 +121,7 @@ query test($a: int = 2, $b: int!, $name: string) {
 ```
 
 
-你也可以使用数组与GraphQL变量：
+你也可以使用数组与`GraphQL`变量：
 
 ``` dql
 query test($a: int = 2, $b: int!, $aName: string, $bName: string) {
@@ -193,7 +193,7 @@ query test($a: int = 2, $b: int!, $aName: string, $bName: string) {
 ```
 
 
-我们还支持facet变量替换：
+我们还支持`facet`变量替换：
 
 ``` dql
 query test($name: string = "Alice", $IsClose: string = "true") {

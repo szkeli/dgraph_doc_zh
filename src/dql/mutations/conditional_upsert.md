@@ -16,7 +16,7 @@ upsert {
 
 ## 一个使用条件插入的小例子
 
-假设在我们之前的例子中，我们知道公司1的员工少于100人。为了安全起见，我们希望只在变量v中存储的uid小于100但大于50时才执行变异。这可以实现如下：
+假设在我们之前的例子中，我们知道公司1的员工少于100人。为了安全起见，我们希望只在变量v中存储的uid小于100但大于50时才执行变更。这可以实现如下：
 
 ``` bash
 curl -H "Content-Type: application/rdf" -X POST localhost:8080/mutate?commitNow=true -d  $'
@@ -187,7 +187,7 @@ upsert {
 }
 ```
 
-我们可以实现相同的结果使用json数据集如下：
+也能通过`json`的方式进行相同的操作：
 
 ``` bash
 curl -H "Content-Type: application/json" -X POST localhost:8080/mutate?commitNow=true -d '{

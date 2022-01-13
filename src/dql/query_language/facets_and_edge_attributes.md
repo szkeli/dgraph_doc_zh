@@ -1,12 +1,12 @@
 # facet和Edge属性
 
-`Dgraph`支持`facet`————edge上的键值对————是`RDF`三元组的扩展。也就是说，`facet`向边添加属性，而不是向节点添加属性。例如，两个节点之间的朋友边可能具有亲密友谊的`bool`属性。`facet`也可以用作边(edge)的权重。
+`Dgraph`支持`facet`————`edge`上的键值对————是`RDF`三元组的扩展。也就是说，`facet`向边添加属性，而不是向节点添加属性。例如，两个节点之间的朋友边可能具有亲密友谊的`bool`属性。`facet`也可以用作边（edge）的权重。
 
-虽然你可能会发现自己很多时候倾向于一些方面，但它们不应该被滥用。例如，给`friend`这条边(edge)添加一个`date_of_birth`属性可能不是一个正经的建模。对于`friend`这条边，你更应该添加比如`start_of_friendship`这个属性。然而，`facet`在`Dgraph`中并不像谓词(`predicate`)那样是一等公民。
+虽然你可能会发现自己很多时候倾向于一些方面，但它们不应该被滥用。例如，给`friend`这条边（edge）添加一个`date_of_birth`属性可能不是一个正经的建模。对于`friend`这条边，你更应该添加比如`start_of_friendship`这个属性。然而，`facet`在`Dgraph`中并不像谓词（`predicate`）那样是一等公民。
 
 `Facet`键是字符串，值可以是`string`、`bool`、`int`、`float`和`dateTime`。对于`int`和`float`，只接受32位有符号整数和64位浮点数。
 
-下面这些对于`facet`的变更将会贯穿整章。该变更(mutation)为一些人添加了数据，例如，在`mobile`和`car`中记录了`since` `facet`，以记录`Alice`购买汽车并开始使用手机号码的时间。
+下面这些对于`facet`的变更将会贯穿整章。该变更（`mutation`）为一些人添加了数据，例如，在`mobile`和`car`中记录了`since` `facet`，以记录`Alice`购买汽车并开始使用手机号码的时间。
 
 首先，我们添加一些`Schema`：
 
@@ -74,9 +74,9 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 ``` dql
 {
   data(func: eq(name, "Alice")) {
-     name
-     mobile
-     car
+    name
+    mobile
+    car
   }
 }
 ```
@@ -95,14 +95,14 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 }
 ```
 
-语法`@facet (facet-name)`用于查询`facet`数据。对于`Alice`, `mobile`和`car`的`since` facet被查询如下：
+语法`@facet (facet-name)`用于查询`facet`数据。对于`Alice`, `mobile`和`car`的`since`这个`facet`被查询如下：
 
 ``` dql
 {
   data(func: eq(name, "Alice")) {
-     name
-     mobile @facets(since)
-     car @facets(since)
+    name
+    mobile @facets(since)
+    car @facets(since)
   }
 }
 ```
@@ -130,9 +130,9 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 ``` dql 
 {
   data(func: eq(name, "Alice")) {
-     name
-     mobile @facets
-     car @facets
+    name
+    mobile @facets
+    car @facets
   }
 }
 ```
@@ -191,14 +191,14 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 
 ``` dql
 {
-   data(func: eq(name, "Alice")) {
-     name
-     mobile
-     car @facets(car_since: since)
-     friend @facets(close_friend: close) {
-       name
-     }
-   }
+  data(func: eq(name, "Alice")) {
+  name
+  mobile
+  car @facets(car_since: since)
+  friend @facets(close_friend: close) {
+    name
+  }
+  }
 }
 ```
 
@@ -277,12 +277,12 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 
 ``` dql
 {
-   data(func: eq(name, "Alice")) {
-     name
-     friend @facets(close) {
-       name
-     }
-   }
+  data(func: eq(name, "Alice")) {
+    name
+    friend @facets(close) {
+      name
+    }
+  }
 }
 ```
 
@@ -357,11 +357,11 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 }
 ```
 
-`Bob`有一辆车，它有一个`facet` `since`，在结果中，它是`key car|since`下`Bob`的同一个对象的一部分。此外，`Bob`和`Alice`之间的密切关系也是`Bob`的输出对象的一部分。`Charlie`没有`Car`边(edge)，因此只有`UID` `facets`。
+`Bob`有一辆车，它有一个`facet` `since`，在结果中，它是`key car|since`下`Bob`的同一个对象的一部分。此外，`Bob`和`Alice`之间的密切关系也是`Bob`的输出对象的一部分。`Charlie`没有`Car`边（edge），因此只有`UID` `facets`。
 
 ## 在facets上使用过滤
 
-`Dgraph`支持基于`facet`的边(edge)过滤。过滤的工作原理类似于它在没有`facet`的边(edge)上的工作原理，并且具有相同的可用函数。
+`Dgraph`支持基于`facet`的边（edge）过滤。过滤的工作原理类似于它在没有`facet`的边（edge）上的工作原理，并且具有相同的可用函数。
 
 找到爱丽丝的好朋友：
 
@@ -461,7 +461,7 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 
 ## 使用`Facet`排序
 
-可以对`uid`边(edge)上的`facet`进行排序。在这里，我们将爱丽丝、鲍勃和查理对电影的评级进行分类，这是一个`facet`：
+可以对`uid`边（edge）上的`facet`进行排序。在这里，我们将爱丽丝、鲍勃和查理对电影的评级进行分类，这是一个`facet`：
 
 ``` dql
 {
@@ -536,7 +536,7 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 
 ## 将`Facet`值赋值给变量
 
-`UID`边(edge)上的`facet`可以存储在值变量(variables)中。这个变量是从边(edge)目标到`facet`的映射。
+`UID`边（edge）上的`facet`可以存储在值变量（variables）中。这个变量是从边（edge）目标到`facet`的映射。
 
 找到`Alice`被标记为`close`和`relative`的朋友：
 
@@ -595,9 +595,9 @@ curl -H "Content-Type: application/rdf" localhost:8080/mutate?commitNow=true -XP
 
 ## Facet和值传播
 
-可以将`int`和`float`的`Facet`值赋给变量，从而使这些值(variables)传播。
+可以将`int`和`float`的`Facet`值赋给变量，从而使这些值（variables）传播。
 
-爱丽丝、鲍勃和查理都给每部电影打分。`facet`评级上的值变量将电影映射到评级。通过多条路径到达电影的查询将对每条路径的评级进行求和。下面总结了爱丽丝、鲍勃和查理对这三部电影的评分：
+`Alice`、`Bob`和`Charlie`都给每部电影打分。`facet`评级上的值变量将电影映射到评级。通过多条路径到达电影的查询将对每条路径的评级进行求和。下面总结了`Alice`、`Bob`和`Charlie`对这三部电影的评分：
 
 ``` dql
 {

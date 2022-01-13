@@ -17,9 +17,9 @@
 `logbase(a, b)`| `int` `float` |将`log(a)`返回到基数`b`
 `cond(a, b, c)`|第一个操作数必须是`bool`值|如果a为真，选择b，否则选c
 
-> 如果发生整数溢出，或将操作数传递给数学操作(如`ln`、`logbase`、`sqrt`、`pow`)导致非法操作，`Dgraph`将返回错误。
+> 如果发生整数溢出，或将操作数传递给数学操作（如`ln`、`logbase`、`sqrt`、`pow`）导致非法操作，`Dgraph`将返回错误。
 
-查询示例：将史蒂芬·斯皮尔伯格的每一部电影的演员数量、类型数量和国家数量相加，得出分数。按得分递减的顺序列出这类电影的前五名：
+查询示例：将`steven spielberg`的每一部电影的演员数量、类型数量和国家数量相加，得出分数。按得分递减的顺序列出这类电影的前五名：
 
 ``` graphql 
 {
@@ -70,9 +70,9 @@
 
 可以在过滤器中使用值变量及其聚合。
 
-查询示例：为每一部史蒂文·斯皮尔伯格`Steven Spielberg`的电影计算一个分数，并带有上映日期的条件，以惩罚10年以上的电影，过滤结果分数：
+查询示例：为`Steven Spielberg`的每一部电影计算一个分数，并带有上映日期的条件，以惩罚10年以上的电影，过滤结果分数：
 
-``` graphql
+``` dql
 {
   var(func:allofterms(name@en, "steven spielberg")) {
     films as director.film {
@@ -110,7 +110,7 @@
 
 查询示例：为`Steven Spielberg`的每一部电影计算一个分数，然后将分数相加：
 
-``` graphql
+``` dql
 {
 	steven as var(func:eq(name@en, "Steven Spielberg")) @filter(has(director.film)) {
 		director.film {

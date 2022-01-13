@@ -244,7 +244,7 @@
 
 查询示例：`Angelina Jolie`的电影，通过流派排序：
 
-``` graphql
+``` dql
 {
   var(func: allofterms(name@en, "angelina jolie")) {
     name@en

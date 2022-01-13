@@ -8,7 +8,8 @@
 
 ## First 参数
 
-解析示例：
+语法示例：
+
 * `q(func: ..., first: N)`
 * `predicate (first: N) { ... }`
 * `predicate @filter(...) (first: N) { ... }`
@@ -73,7 +74,7 @@
 
 查询例：在所有叫史蒂文的导演中，导演演员最多的三位叫史蒂文的导演：
 
-``` graphql
+``` dql
 {
   ID as var(func: allofterms(name@en, "Steven")) @filter(has(director.film)) {
     director.film {

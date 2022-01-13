@@ -2,7 +2,7 @@
 
 使用`@cascade`指令，没有在查询中指定所有谓词的节点将被删除。在应用了某些筛选器或节点可能没有列出所有谓词的情况下，这可能很有用。
 
-查询例：《哈利波特》电影，每个演员和角色都扮演过。使用`cascade`，任何不是由名为沃里克的演员扮演的角色都会被删除，就像任何没有名为沃里克的演员的《哈利波特》电影一样。如果没有“级联”，所有角色都会回归，但只有那些由名为沃里克的演员扮演的角色才会有演员的名字：
+查询例：`Harry Potter`电影，每个演员和角色都扮演过。使用`cascade`，任何不是由名为沃里克的演员扮演的角色都会被删除，就像任何没有名为沃里克的演员的`Harry Potter`电影一样。如果没有使用`@cascade`，所有角色都会在返回到结果集中，但只有那些由名为`Warwick`的演员扮演的角色才会有演员的名字：
 
 ``` graphql
 {
@@ -191,7 +191,7 @@
 
 您也可以在内部查询块上应用`@cascade`：
 
-``` graphql
+``` dql
 {
   HP(func: allofterms(name@en, "Harry Potter")) {
     name@en
@@ -293,13 +293,13 @@
 
 ## 参数化@cascade
 
-`@cascade`指令可以选择一个字段列表作为参数。这将更改默认行为，只考虑提供的字段，而不是类型的所有字段。列出的字段自动级联为嵌套选择集的必需参数。参数化的级联作用于层次(例如根函数或更低的层次)，所以你需要在你想要应用它的确切层次上指定`@cascade(param)`。
+`@cascade`指令可以选择一个字段列表作为参数。这将更改默认行为，只考虑提供的字段，而不是类型的所有字段。列出的字段自动级联为嵌套选择集的必需参数。参数化的级联作用于层次（例如根函数或更低的层次），所以你需要在你想要应用它的确切层次上指定`@cascade(param)`。
 
 > 提示：`@cascade(predicate)`的规则是，谓词需要在查询中处于与`@cascade`相同的级别。
 
 以下查询为例：
 
-``` graphql
+``` dql
 {
   nodes(func: allofterms(name@en, "jones indiana")) {
     name@en
@@ -365,7 +365,7 @@
 
 要获得具有遍历类型但可能没有`produced_by`的节点，你可以参数化级联：
 
-``` graphql
+``` dql
 {
   nodes(func: allofterms(name@en, "jones indiana")) @cascade(genre) {
     name@en
@@ -422,9 +422,9 @@
 }
 ```
 
-如果您想检查多个字段，只需用逗号分隔它们。例如，级联produced_by和written_by:
+如果您想检查多个字段，只需用逗号分隔它们。例如，级联`produced_by`和`written_by`:
 
-``` graphql
+``` dql
 {
   nodes(func: allofterms(name@en, "jones indiana")) @cascade(produced_by,written_by) {
     name@en
@@ -534,13 +534,13 @@
 
 ### 嵌套和参数化级联
 
-字段选择的级联特性被嵌套的@cascade覆盖。
+字段选择的级联特性被嵌套的`@cascade`覆盖。
 
 前面的示例也可以沿链级联，并根据需要在每个级别上重写。
 
-例如，如果你只想要“由制作《侏罗纪世界》的同一个人制作的印第安纳·琼斯电影”:
+例如，如果你只想要“由制作`jurassic world`的同一个人制作的`jones indiana`”:
 
-``` graphql
+``` dql
 {
   nodes(func: allofterms(name@en, "jones indiana")) @cascade(produced_by) {
     name@en
@@ -629,7 +629,7 @@
 
 另一个嵌套的例子：找到《星球大战》和《侏罗纪世界》的编剧和制片人是同一个人的《印第安纳琼斯》电影：
 
-``` graphql
+``` dql
 {
   nodes(func: allofterms(name@en, "jones indiana")) @cascade(produced_by,written_by) {
     name@en

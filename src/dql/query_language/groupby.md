@@ -1,18 +1,18 @@
 # 分组 GroupBy
 
-解析示例：
+语法示例：
 * `q(func: ...) @groupBy(predicate) { min(...) }`
 * `predicate @groupBy(pred) { count(uid) }`
 
-`groupby`查询聚合给定一组属性的查询结果，在这些属性上对元素进行分组。例如，一个包含块好友`@groupby(age) {count(uid)}`的查询，查找沿好友边缘可到达的所有节点，根据年龄将这些节点划分为组，然后计算每个组中有多少个节点。返回的结果是分组的边和聚合。
+`groupby`查询聚合给定一组属性的查询结果，在这些属性上对元素进行分组。例如，一个`friend @groupby(age) { count(uid) }`的查询，查找沿`friend`边可到达的所有节点，根据年龄将这些节点划分为组，然后计算每个组中有多少个节点。返回的结果是分组的边和聚合。
 
 在一个`groupby`块中，只允许聚合，并且`count`只能应用于`uid`。
 
-如果`groupby`应用于`uid`谓词，则生成的聚合可以保存在一个变量中(将分组的`uid`映射到聚合值)，并在查询的其他地方使用它来提取分组或聚合的边缘以外的信息。
+如果`groupby`应用于`uid`谓词，则生成的聚合可以保存在一个变量中（将分组的`uid`映射到聚合值），并在查询的其他地方使用它来提取分组或聚合的边以外的信息。
 
 查询示例：对于`Steven Spielberg`的电影，计算每种类型的电影数量，并为每种类型返回类型名称和数量。名称不能在`groupby`中提取，因为它不是一个聚合，但是`uid(a)`可以用于从`uid`到值映射中提取`uid`，从而按类型`uid`组织`byGenre`查询：
 
-``` graphql
+``` dql
 {
   var(func:allofterms(name@en, "steven spielberg")) {
     director.film @groupby(genre) {
@@ -54,9 +54,9 @@
 }
 ```
 
-查询示例：蒂姆·伯顿电影中的演员以及他们在蒂姆·伯顿的电影中扮演了多少角色：
+查询示例：`Tim Burton`电影中的演员以及他们在`Tim Burton`的电影中扮演了多少角色：
 
-``` graphql
+``` dql
 {
   var(func:allofterms(name@en, "Tim Burton")) {
     director.film {

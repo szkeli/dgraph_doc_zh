@@ -1,6 +1,6 @@
 # 聚合操作 Aggregation
 
-解析规则：
+语法示例：
 * `AG(val(varName))`
 
 `AG`的可能取值是：
@@ -18,9 +18,9 @@ sum/avg|int float
 
 聚合操作只能用在值变量上，不需要索引。
 
-在包含变量定义的查询块上应用聚合。与查询变量和值变量(它们是全局的)不同，聚合是在本地计算的。例如:
+在包含变量定义的查询块上应用聚合。与查询变量和值变量（它们是全局的）不同，聚合是在本地计算的。例如:
 
-``` graphql
+``` dql
 A as predicateA {
   ...
   B as predicateB {
@@ -38,7 +38,7 @@ A as predicateA {
 
 查询示例：`Steven`导演的，并按第一部电影的上映日期升序排列的电影：
 
-``` graphql
+``` dql
 {
   stevens as var(func: allofterms(name@en, "steven")) {
     director.film {
@@ -83,9 +83,9 @@ A as predicateA {
 ### 用在根查询中
 
 查询示例：获取名字包含`Harry Potter`的最新更新的电影，
-更新日期被映射到一个变量(d)，然后被聚合操作(max)，最后附加到一个空的查询块中：
+更新日期被映射到一个变量（d），然后被聚合操作（max），最后附加到一个空的查询块中：
 
-``` graphql
+``` dql
 {
   var(func: allofterms(name@en, "Harry Potter")) {
     d as initial_release_date
@@ -113,7 +113,7 @@ A as predicateA {
 
 查询示例：`Quentin Tarantino`发布的电影，按时间最新的排列：
 
-``` graphql
+``` dql
 {
   director(func: allofterms(name@en, "Quentin Tarantino")) {
     director.film {
@@ -163,9 +163,9 @@ A as predicateA {
 
 可以将聚合分配给值变量，因此可以依次对这些变量进行聚合。
 
-查询示例：对于彼得·杰克逊电影中的每个演员，找出在任何电影中扮演的角色的数量。把这些数字加起来，就能算出所有演员在这部电影中所扮演的角色总数。然后把这些数字加起来，就能算出演员们在彼得·杰克逊的电影中扮演过的角色总数。注意，这演示了如何聚合聚合；不过，这个问题的答案并不十分精确，因为在彼得·杰克逊的多部电影中出现的演员被计算了不止一次。
+查询示例：对于`Peter Jackson`电影中的每个演员，找出在任何电影中扮演的角色的数量。把这些数字加起来，就能算出所有演员在这部电影中所扮演的角色总数。然后把这些数字加起来，就能算出演员们在彼得·杰克逊的电影中扮演过的角色总数。注意，这演示了如何聚合聚合；不过，这个问题的答案并不十分精确，因为在彼得·杰克逊的多部电影中出现的演员被计算了不止一次。
 
-``` graphql
+``` dql
 {
   PJ as var(func:allofterms(name@en, "Peter Jackson")) {
     director.film {

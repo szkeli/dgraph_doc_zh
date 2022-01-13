@@ -6,9 +6,9 @@
 
 连接词`AND`、`OR`和`NOT`连接过滤器，可以构建到任意复杂的过滤器中，如`(NOT A OR B)`和`(C AND NOT (D OR E))`。注意，`NOT`绑定比`AND`绑定更紧密，`AND`绑定比`OR`绑定更紧密。
 
-查询示例：所有史蒂芬·斯皮尔伯格`(Steven Spielberg)`同时包含“indiana”和“jones”或“jurassic”和“park”的电影：
+查询示例：所有史蒂芬·斯皮尔伯格`(Steven Spielberg)`同时包含“indiana”和`jones`或`jurassic`和`park`的电影：
 
-``` graphql
+``` dql
 {
   me(func: eq(name@en, "Steven Spielberg")) @filter(has(director.film)) {
     name@en

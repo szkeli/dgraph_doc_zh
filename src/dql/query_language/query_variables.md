@@ -1,12 +1,13 @@
 # 查询变量
 
-解析规则：
+语法解析：
+
 * `varName as q(func: ...) { ... }`
 * `varName as var(func: ...) { ... }`
 * `varName as predicate { ... }`
 * `varName as predicate @filter(...) { ... }`
 
-类型: uid
+类型: `uid`
 
 在查询中一个位置匹配的节点的`uid`可以存储在一个变量中，并在其它地方使用。查询变量可以在其他查询块中使用，也可以在定义块的子节点中使用。
 
@@ -20,9 +21,9 @@
 
 语法`func: uid(A, B)`或`@filter(uid(A, B))`表示变量`A`和`B`的`uid`的并集。
 
-查询示例：安吉丽娜·朱莉和布拉德·皮特都出演过同一类型的电影。请注意，B和D匹配所有电影的所有类型，而不是每部电影的类型：
+查询示例：`angelina jolie`和`brad pitt`都出演过同一类型的电影。请注意，`B`和`D`匹配所有电影的所有类型，而不是每部电影的类型：
 
-``` graphql
+``` dql
 {
  var(func:allofterms(name@en, "angelina jolie")) {
    actor.film {

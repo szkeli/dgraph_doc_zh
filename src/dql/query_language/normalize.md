@@ -4,7 +4,7 @@
 
 查询示例：`Steven Spielberg`每部电影的电影名，国家和前两位演员(按`UID`顺序)，没有`initial_release_date`，因为没有给出别名并通过`@normalize`进行平化：
 
-``` graphql
+``` dql
 {
   director(func:allofterms(name@en, "steven spielberg")) @normalize {
     director: name@en
@@ -66,7 +66,7 @@
 
 还可以在嵌套查询块上应用`@normalize`。它将以类似的方式工作，但只是使应用了`@normalize`的嵌套查询块的结果变平。`@normalize`将返回一个列表，不管它应用在哪个类型的属性上：
 
-``` graphql
+``` dql
 {
   director(func:allofterms(name@en, "steven spielberg")) {
     director: name@en
